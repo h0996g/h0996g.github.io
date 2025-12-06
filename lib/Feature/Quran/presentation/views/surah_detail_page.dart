@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noor/Feature/Quran/presentation/views/tafseer_bottom_sheet.dart';
 import '../../../../Core/theme/app_colors.dart';
 import '../../data/models/surah_model.dart';
 import '../../data/models/ayah_model.dart';
@@ -31,14 +32,14 @@ class SurahDetailPage extends StatelessWidget {
           itemCount: surah.ayahs.length,
           itemBuilder: (context, index) {
             final AyahModel ayah = surah.ayahs[index];
-            return _buildAyahItem(ayah);
+            return _buildAyahItem(context, ayah);
           },
         ),
       ),
     );
   }
 
-  Widget _buildAyahItem(AyahModel ayah) {
+  Widget _buildAyahItem(BuildContext context, AyahModel ayah) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.h),
       padding: EdgeInsets.all(12.w),
@@ -76,7 +77,19 @@ class SurahDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Expanded(child: SizedBox()),
+              IconButton(
+                icon: const Icon(
+                  Icons.menu_book_rounded,
+                  color: AppColors.secondary,
+                ),
+                onPressed: () {
+                  TafseerBottomSheet.show(
+                    context,
+                    surah.number,
+                    ayah.numberInSurah,
+                  );
+                },
+              ),
             ],
           ),
           SizedBox(height: 12.h),

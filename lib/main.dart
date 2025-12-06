@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noor/Core/api/dio.dart';
 import 'package:noor/Feature/Home/presentation/views/start_page.dart';
 
 void main() {
+  DioHelper.init();
   runApp(const MyApp());
 }
 
