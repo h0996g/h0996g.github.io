@@ -39,6 +39,8 @@ dependencies:
   dio: ^5.9.0
   just_audio: ^0.10.5
   equatable: ^2.0.7
+  supabase_flutter: ^2.10.3
+  flutter_dotenv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +70,8 @@ flutter:
     - assets/db/sectionDetails.json
     - assets/db/Names_Of_Allah/Names_Of_Allah.json
     - assets/db/quran/
+    - .env.development
+    - .env.production
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

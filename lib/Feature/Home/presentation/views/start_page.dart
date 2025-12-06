@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../widgets/home_app_bar_widget.dart';
 import '../widgets/main_feature_cards_widget.dart';
 import '../widgets/names_of_allah_card_widget.dart';
-// import '../widgets/tasbih_card_widget.dart';
 import '../widgets/feedback_card_widget.dart';
 import '../widgets/bottom_player_widget.dart';
 import '../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
