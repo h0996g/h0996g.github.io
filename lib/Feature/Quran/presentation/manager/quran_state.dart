@@ -1,8 +1,10 @@
+import 'package:equatable/equatable.dart';
+
 import '../../data/models/surah_model.dart';
 
 enum QuranStatus { initial, loading, success, failure }
 
-class QuranState {
+class QuranState extends Equatable {
   final QuranStatus status;
   final List<SurahModel> surahs;
   final String? errorMessage;
@@ -23,5 +25,13 @@ class QuranState {
       surahs: surahs ?? this.surahs,
       errorMessage: errorMessage ?? this.errorMessage,
     );
+  }
+
+  @override
+  List<Object?> get props => [status, surahs, errorMessage];
+
+  @override
+  String toString() {
+    return 'QuranState(status: $status, errorMessage: $errorMessage)';
   }
 }

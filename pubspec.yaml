@@ -37,6 +37,8 @@ dependencies:
   flutter_screenutil: ^5.9.3
   flutter_bloc: ^9.1.1
   dio: ^5.9.0
+  just_audio: ^0.10.5
+  equatable: ^2.0.7
 
 dev_dependencies:
   flutter_test:

@@ -5,6 +5,7 @@ class AyahModel {
   final int juz;
   final int page;
   final bool sajda;
+  final String audioUrl;
 
   AyahModel({
     required this.number,
@@ -13,6 +14,7 @@ class AyahModel {
     required this.juz,
     required this.page,
     required this.sajda,
+    required this.audioUrl,
   });
 
   factory AyahModel.fromJson(Map<String, dynamic> json) {
@@ -23,6 +25,7 @@ class AyahModel {
       juz: json['juz'],
       page: json['page'],
       sajda: json['sajda'] is bool ? json['sajda'] : false,
+      audioUrl: json['audio'],
     );
   }
 }

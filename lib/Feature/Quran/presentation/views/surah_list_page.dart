@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noor/Feature/Quran/presentation/manager/audio_cubit.dart';
 import '../../../../Core/theme/app_colors.dart';
 import '../../presentation/manager/quran_cubit.dart';
 import '../../presentation/manager/quran_state.dart';
@@ -96,7 +97,10 @@ class SurahListPage extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SurahDetailPage(surah: surah),
+                          builder: (context) => BlocProvider(
+                            create: (context) => AudioCubit(),
+                            child: SurahDetailPage(surah: surah),
+                          ),
                         ),
                       );
                     },

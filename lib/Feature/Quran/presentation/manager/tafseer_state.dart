@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:noor/Feature/Quran/data/models/tafseer_model.dart';
 
 enum TafseerStatus { initial, loading, success, failure }
 
-class TafseerState {
+class TafseerState extends Equatable {
   final TafseerStatus status;
   final TafseerModel? tafseer;
   final String? errorMessage;
@@ -23,5 +24,12 @@ class TafseerState {
       tafseer: tafseer ?? this.tafseer,
       errorMessage: errorMessage ?? this.errorMessage,
     );
+  }
+
+  @override
+  List<Object?> get props => [status, tafseer, errorMessage];
+  @override
+  String toString() {
+    return 'TafseerState(status: $status, errorMessage: $errorMessage)';
   }
 }

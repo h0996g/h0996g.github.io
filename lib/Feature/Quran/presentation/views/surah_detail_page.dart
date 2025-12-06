@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noor/Feature/Quran/presentation/views/tafseer_bottom_sheet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/theme/app_colors.dart';
 import '../../data/models/surah_model.dart';
 import '../../data/models/ayah_model.dart';
+import '../../presentation/manager/audio_cubit.dart';
+import '../../presentation/manager/audio_state.dart';
 
 class SurahDetailPage extends StatelessWidget {
   final SurahModel surah;
@@ -32,14 +35,22 @@ class SurahDetailPage extends StatelessWidget {
           itemCount: surah.ayahs.length,
           itemBuilder: (context, index) {
             final AyahModel ayah = surah.ayahs[index];
-            return _buildAyahItem(context, ayah);
+            return _AyahItem(surah: surah, ayah: ayah);
           },
         ),
       ),
     );
   }
+}
 
-  Widget _buildAyahItem(BuildContext context, AyahModel ayah) {
+class _AyahItem extends StatelessWidget {
+  final SurahModel surah;
+  final AyahModel ayah;
+
+  const _AyahItem({required this.surah, required this.ayah});
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8.h),
       padding: EdgeInsets.all(12.w),
@@ -77,18 +88,65 @@ class SurahDetailPage extends StatelessWidget {
                   ),
                 ),
               ),
-              IconButton(
-                icon: const Icon(
-                  Icons.menu_book_rounded,
-                  color: AppColors.secondary,
-                ),
-                onPressed: () {
-                  TafseerBottomSheet.show(
-                    context,
-                    surah.number,
-                    ayah.numberInSurah,
-                  );
-                },
+              Row(
+                children: [
+                  BlocBuilder<AudioCubit, AudioState>(
+                    builder: (context, state) {
+                      bool isPlaying = false;
+                      bool isLoading = false;
+
+                      if (state.currentAyahId == ayah.number) {
+                        if (state.status == AudioStatus.playing) {
+                          isPlaying = true;
+                        } else if (state.status == AudioStatus.loading) {
+                          isLoading = true;
+                        }
+                      }
+
+                      if (isLoading) {
+                        return Padding(
+                          padding: EdgeInsets.all(8.w),
+                          child: SizedBox(
+                            width: 24.w,
+                            height: 24.h,
+                            child: const CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: AppColors.primary,
+                            ),
+                          ),
+                        );
+                      }
+
+                      return IconButton(
+                        icon: Icon(
+                          isPlaying
+                              ? Icons.pause_circle_filled
+                              : Icons.play_circle_fill,
+                          color: AppColors.primary,
+                        ),
+                        onPressed: () {
+                          context.read<AudioCubit>().playAudio(
+                            ayah.audioUrl,
+                            ayah.number,
+                          );
+                        },
+                      );
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.menu_book_rounded,
+                      color: AppColors.secondary,
+                    ),
+                    onPressed: () {
+                      TafseerBottomSheet.show(
+                        context,
+                        surah.number,
+                        ayah.numberInSurah,
+                      );
+                    },
+                  ),
+                ],
               ),
             ],
           ),
