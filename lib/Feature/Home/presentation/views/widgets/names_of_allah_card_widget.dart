@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../Core/theme/app_colors.dart';
+import '../../../../../../Core/theme/app_colors.dart';
+import '../../../../../../Core/const/app_images.dart';
 
-class TasbihCard extends StatelessWidget {
+class NamesOfAllahCard extends StatelessWidget {
   final VoidCallback onTap;
 
-  const TasbihCard({super.key, required this.onTap});
+  const NamesOfAllahCard({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +21,8 @@ class TasbihCard extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.primary,
-                AppColors.primary.withValues(alpha: 0.7),
+                AppColors.secondary,
+                AppColors.secondary.withValues(alpha: 0.7),
               ],
             ),
             borderRadius: BorderRadius.circular(20.r),
@@ -37,12 +38,13 @@ class TasbihCard extends StatelessWidget {
             children: [
               // Decorative Pattern
               Positioned(
-                left: -30.w,
-                bottom: -30.h,
-                child: Icon(
-                  Icons.touch_app_rounded,
-                  size: 150.sp,
-                  color: Colors.white.withValues(alpha: 0.1),
+                right: -30.w,
+                top: -30.h,
+                child: Image.asset(
+                  AppImages.namesOfAllah,
+                  height: 150.sp,
+                  width: 150.sp,
+                  // color: Colors.white.withValues(alpha: 0.9),
                 ),
               ),
 
@@ -57,10 +59,11 @@ class TasbihCard extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(16.r),
                       ),
-                      child: Icon(
-                        Icons.touch_app_rounded,
-                        color: Colors.white,
-                        size: 40.sp,
+                      child: Image.asset(
+                        AppImages.namesOfAllah,
+                        // color: Colors.white,
+                        height: 40.sp,
+                        width: 40.sp,
                       ),
                     ),
                     SizedBox(width: 20.w),
@@ -70,7 +73,7 @@ class TasbihCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'التسبيح',
+                            'أسماء الله الحسنى',
                             style: TextStyle(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,
@@ -80,7 +83,7 @@ class TasbihCard extends StatelessWidget {
                           ),
                           SizedBox(height: 6.h),
                           Text(
-                            'Digital Tasbih Counter',
+                            '99 Beautiful Names of Allah',
                             style: TextStyle(
                               fontSize: 14.sp,
                               color: Colors.white.withValues(alpha: 0.9),
