@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:noor/Feature/Home/data/repo/home_repo.dart';
 import 'package:noor/Feature/Home/presentation/manager/bottom_player_state.dart';
+import 'dart:math';
 
 class BottomPlayerCubit extends Cubit<BottomPlayerState> {
   final HomeRepository repository;
@@ -15,6 +16,51 @@ class BottomPlayerCubit extends Cubit<BottomPlayerState> {
         emit(state.copyWith(status: BottomPlayerStatus.stopped));
       }
     });
+
+    _audioPlayer.positionStream.listen((position) {
+      // Only emit if the second has changed to avoid excessive rebuilds
+      if (position.inSeconds != state.position.inSeconds) {
+        emit(state.copyWith(position: position));
+      }
+    });
+
+    _audioPlayer.durationStream.listen((duration) {
+      emit(state.copyWith(duration: duration ?? Duration.zero));
+    });
+  }
+
+  void seek(Duration position) {
+    _audioPlayer.seek(position);
+  }
+
+  Future<void> replay() async {
+    await _audioPlayer.seek(Duration.zero);
+    if (!_audioPlayer.playing) {
+      _audioPlayer.play();
+      emit(state.copyWith(status: BottomPlayerStatus.playing));
+    }
+  }
+
+  Future<void> playNext() async {
+    if (state.audioData?.id != null) {
+      // Loop or Clamp? Let's assume loop 1-100 as per user context
+      int nextId = state.audioData!.id! + 1;
+      if (nextId > 100) nextId = 1;
+      await playQuranAudio(nextId);
+    }
+  }
+
+  Future<void> playPrevious() async {
+    if (state.audioData?.id != null) {
+      int prevId = state.audioData!.id! - 1;
+      if (prevId < 1) prevId = 100;
+      await playQuranAudio(prevId);
+    }
+  }
+
+  Future<void> playRandomAyah() async {
+    final randomId = Random().nextInt(100) + 1; // 1 to 100
+    await playQuranAudio(randomId);
   }
 
   Future<void> playQuranAudio(int id) async {

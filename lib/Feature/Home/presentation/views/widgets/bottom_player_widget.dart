@@ -17,7 +17,7 @@ class BottomPlayerWidget extends StatelessWidget {
           top: false,
           bottom: Platform.isIOS == false,
           child: Container(
-            height: 70.h,
+            height: 145.h,
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -35,89 +35,158 @@ class BottomPlayerWidget extends StatelessWidget {
                 ),
               ],
             ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: Row(
-                children: [
-                  // Play Button
-                  GestureDetector(
-                    onTap: () {
-                      // Trigger play for ID 1 as requested
-                      context.read<BottomPlayerCubit>().playQuranAudio(1);
-                    },
-                    child: Container(
-                      width: 56.w,
-                      height: 56.h,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(16.r),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.1),
-                            blurRadius: 8.r,
-                            offset: Offset(0, 2.h),
-                          ),
-                        ],
-                      ),
-                      child: _buildPlayIcon(state.status),
-                    ),
-                  ),
-
-                  SizedBox(width: 16.w),
-
-                  // Text Content
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'آية عشوائية',
-                          style: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                            fontFamily: 'Amiri',
-                          ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Info Row
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 48.w,
+                        height: 48.h,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
-                        SizedBox(height: 4.h),
-                        Text(
-                          state.status == BottomPlayerStatus.playing
-                              ? 'Playing...'
-                              : state.status == BottomPlayerStatus.loading
-                              ? 'Loading...'
-                              : 'Play Random Ayah',
-                          style: TextStyle(
-                            fontSize: 13.sp,
-                            color: Colors.black.withValues(alpha: 0.7),
-                            fontWeight: FontWeight.w300,
-                          ),
+                        child: Icon(
+                          Icons.music_note,
+                          color: AppColors.secondary,
                         ),
-                      ],
-                    ),
-                  ),
-
-                  // Shuffle Button (Can be used to generate random ID later)
-                  GestureDetector(
-                    onTap: () {
-                      // Future implementation for random ID
-                      context.read<BottomPlayerCubit>().playQuranAudio(1);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(12.w),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withValues(alpha: 0.3),
-                        borderRadius: BorderRadius.circular(12.r),
                       ),
-                      child: Icon(
-                        Icons.shuffle_rounded,
+                      SizedBox(width: 12.w),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'آية عشوائية ${state.audioData?.id != null ? "#${state.audioData!.id}" : ""}',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87,
+                                fontFamily: 'Amiri',
+                              ),
+                            ),
+                            Text(
+                              _formatDuration(state.position) +
+                                  " / " +
+                                  _formatDuration(state.duration),
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                color: Colors.black54,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                SizedBox(height: 8.h),
+
+                // Controls Row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    IconButton(
+                      onPressed: () =>
+                          context.read<BottomPlayerCubit>().playRandomAyah(),
+                      icon: Icon(
+                        Icons.shuffle,
+                        color: Colors.black87,
+                        size: 20.sp,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () =>
+                          context.read<BottomPlayerCubit>().playPrevious(),
+                      icon: Icon(
+                        Icons.skip_previous_rounded,
+                        color: Colors.black87,
+                        size: 32.sp,
+                      ),
+                    ),
+
+                    // Play/Pause
+                    GestureDetector(
+                      onTap: () {
+                        if (state.audioData != null &&
+                            state.audioData!.id != null) {
+                          context.read<BottomPlayerCubit>().playQuranAudio(
+                            state.audioData!.id!,
+                          );
+                        } else {
+                          context.read<BottomPlayerCubit>().playRandomAyah();
+                        }
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(8.w),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: _buildPlayIcon(state.status),
+                      ),
+                    ),
+
+                    IconButton(
+                      onPressed: () =>
+                          context.read<BottomPlayerCubit>().playNext(),
+                      icon: Icon(
+                        Icons.skip_next_rounded,
+                        color: Colors.black87,
+                        size: 32.sp,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () =>
+                          context.read<BottomPlayerCubit>().replay(),
+                      icon: Icon(
+                        Icons.replay,
                         color: Colors.black87,
                         size: 24.sp,
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+
+                // Progress Indicator
+                if (state.duration.inSeconds > 0)
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 0),
+                    child: SliderTheme(
+                      data: SliderTheme.of(context).copyWith(
+                        thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius: 6.0,
+                        ),
+                        overlayShape: RoundSliderOverlayShape(
+                          overlayRadius: 14.0,
+                        ),
+                        trackHeight: 2.0,
+                        activeTrackColor: Colors.white,
+                        inactiveTrackColor: Colors.black12,
+                        thumbColor: Colors.white,
+                      ),
+                      child: Slider(
+                        value: state.position.inSeconds.toDouble().clamp(
+                          0,
+                          state.duration.inSeconds.toDouble(),
+                        ),
+                        max: state.duration.inSeconds.toDouble(),
+                        onChanged: (value) {
+                          context.read<BottomPlayerCubit>().seek(
+                            Duration(seconds: value.toInt()),
+                          );
+                        },
+                      ),
+                    ),
+                  )
+                else
+                  SizedBox(height: 10.h),
+              ],
             ),
           ),
         );
@@ -127,21 +196,25 @@ class BottomPlayerWidget extends StatelessWidget {
 
   Widget _buildPlayIcon(BottomPlayerStatus status) {
     if (status == BottomPlayerStatus.loading) {
-      return Padding(
-        padding: EdgeInsets.all(14.w),
+      return SizedBox(
+        width: 24.w,
+        height: 24.h,
         child: CircularProgressIndicator(
           strokeWidth: 2,
           color: AppColors.secondary,
         ),
       );
     } else if (status == BottomPlayerStatus.playing) {
-      return Icon(Icons.pause_rounded, color: AppColors.secondary, size: 32.sp);
+      return Icon(Icons.pause, color: AppColors.secondary, size: 30.sp);
     } else {
-      return Icon(
-        Icons.play_arrow_rounded,
-        color: AppColors.secondary,
-        size: 32.sp,
-      );
+      return Icon(Icons.play_arrow, color: AppColors.secondary, size: 30.sp);
     }
+  }
+
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }
