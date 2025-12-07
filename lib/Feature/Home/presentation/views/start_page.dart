@@ -9,6 +9,8 @@ import 'widgets/main_feature_cards_widget.dart';
 import 'widgets/names_of_allah_card_widget.dart';
 import 'widgets/feedback_card_widget.dart';
 import 'widgets/bottom_player_widget.dart';
+import 'widgets/tasbih_card_widget.dart';
+import '../../../tasbih/presentation/views/tasbih_page.dart';
 import '../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
 
 class StartPage extends StatelessWidget {
@@ -45,11 +47,14 @@ class StartPage extends StatelessWidget {
             SizedBox(height: 16.h),
 
             // Tasbih Section
-            // TasbihCard(
-            //   onTap: () {
-            //     // Navigate to Tasbih
-            //   },
-            // ),
+            TasbihCard(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TasbihPage()),
+                );
+              },
+            ),
             SizedBox(height: 16.h),
 
             // Feedback Section
