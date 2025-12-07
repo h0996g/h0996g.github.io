@@ -42,19 +42,20 @@ class BottomPlayerCubit extends Cubit<BottomPlayerState> {
   }
 
   Future<void> playNext() async {
-    if (state.audioData?.id != null) {
-      // Loop or Clamp? Let's assume loop 1-100 as per user context
-      int nextId = state.audioData!.id! + 1;
-      if (nextId > 100) nextId = 1;
-      await playQuranAudio(nextId);
+    if (state.historyIndex < state.history.length - 1) {
+      final newIndex = state.historyIndex + 1;
+      emit(state.copyWith(historyIndex: newIndex));
+      await _loadAndPlayAudio(state.history[newIndex]);
+    } else {
+      await playRandomAyah();
     }
   }
 
   Future<void> playPrevious() async {
-    if (state.audioData?.id != null) {
-      int prevId = state.audioData!.id! - 1;
-      if (prevId < 1) prevId = 100;
-      await playQuranAudio(prevId);
+    if (state.historyIndex > 0) {
+      final newIndex = state.historyIndex - 1;
+      emit(state.copyWith(historyIndex: newIndex));
+      await _loadAndPlayAudio(state.history[newIndex]);
     }
   }
 
@@ -64,31 +65,40 @@ class BottomPlayerCubit extends Cubit<BottomPlayerState> {
   }
 
   Future<void> playQuranAudio(int id) async {
+    // Logic to update history when a new specific Ayah is played (random or manual)
+    if (state.status == BottomPlayerStatus.playing &&
+        state.audioData?.id == id) {
+      await _audioPlayer.pause();
+      emit(state.copyWith(status: BottomPlayerStatus.paused));
+      return;
+    }
+
+    if (state.status == BottomPlayerStatus.paused &&
+        state.audioData?.id == id) {
+      emit(state.copyWith(status: BottomPlayerStatus.playing));
+      await _audioPlayer.play();
+      return;
+    }
+
+    // Determine new history
+    final currentHistory = state.historyIndex >= 0
+        ? state.history.sublist(0, state.historyIndex + 1)
+        : <int>[];
+
+    final newHistory = List<int>.from(currentHistory)..add(id);
+    final newIndex = newHistory.length - 1;
+
+    emit(state.copyWith(history: newHistory, historyIndex: newIndex));
+
+    await _loadAndPlayAudio(id);
+  }
+
+  Future<void> _loadAndPlayAudio(int id) async {
     try {
-      // If already playing the requested ID (assuming currently loaded audio is for this ID)
-      if (state.status == BottomPlayerStatus.playing &&
-          state.audioData?.id == id) {
-        await _audioPlayer.pause();
-        emit(state.copyWith(status: BottomPlayerStatus.paused));
-        return;
-      }
-
-      // If paused and same ID, resume
-      if (state.status == BottomPlayerStatus.paused &&
-          state.audioData?.id == id) {
-        emit(state.copyWith(status: BottomPlayerStatus.playing));
-        await _audioPlayer.play();
-        return;
-      }
-
       emit(state.copyWith(status: BottomPlayerStatus.loading));
 
-      // Fetch URL if strictly new ID or no data (simple case: always fetch for now as req implies id=1 always for now)
-      // Optimisation: check if we already have data for this ID to avoid re-fetch, but user wants to play it.
-      // Let's fetch to be safe as per requirements.
       final audioData = await repository.getQuranAudio(id);
 
-      // Stop current if playing? built-in setUrl handles it usually but safe to stop.
       if (_audioPlayer.playing) {
         await _audioPlayer.stop();
       }

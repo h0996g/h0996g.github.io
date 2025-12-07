@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:noor/Feature/Home/data/repo/home_repo.dart';
-import 'package:noor/Feature/Home/presentation/manager/bottom_player_cubit.dart';
 import 'widgets/home_app_bar_widget.dart';
 import 'widgets/main_feature_cards_widget.dart';
 import 'widgets/names_of_allah_card_widget.dart';
@@ -63,15 +59,13 @@ class StartPage extends StatelessWidget {
                 // Navigate to Feedback
               },
             ),
+
+            SizedBox(height: 16.h),
+
+            // Bottom Player for Random Ayah
+            const BottomPlayerWidget(),
           ],
         ),
-      ),
-
-      // Bottom Player for Random Ayah
-      bottomNavigationBar: BlocProvider(
-        create: (context) =>
-            BottomPlayerCubit(HomeRepository(Supabase.instance.client)),
-        child: const BottomPlayerWidget(),
       ),
     );
   }

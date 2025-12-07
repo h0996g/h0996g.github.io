@@ -17,176 +17,241 @@ class BottomPlayerWidget extends StatelessWidget {
           top: false,
           bottom: Platform.isIOS == false,
           child: Container(
-            height: 145.h,
+            margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.secondary,
-                  AppColors.secondary.withValues(alpha: 0.8),
-                ],
-              ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(24.r),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withValues(alpha: 0.1),
-                  blurRadius: 16.r,
-                  offset: Offset(0, -4.h),
+                  blurRadius: 20.r,
+                  offset: Offset(0, 8.h),
+                ),
+                BoxShadow(
+                  color: AppColors.primary.withValues(alpha: 0.05),
+                  blurRadius: 10.r,
+                  offset: Offset(0, 4.h),
                 ),
               ],
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Info Row
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 48.w,
-                        height: 48.h,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12.r),
-                        ),
-                        child: Icon(
-                          Icons.music_note,
-                          color: AppColors.secondary,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(24.r),
+              child: Stack(
+                children: [
+                  // Background Gradient Effect (Subtle)
+                  Positioned.fill(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.white,
+                            AppColors.primary.withValues(alpha: 0.03),
+                          ],
                         ),
                       ),
-                      SizedBox(width: 12.w),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                    ),
+                  ),
+
+                  Padding(
+                    padding: EdgeInsets.all(20.w),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Top Section: Icon, Info, Duration
+                        Row(
                           children: [
-                            Text(
-                              'آية عشوائية ${state.audioData?.id != null ? "#${state.audioData!.id}" : ""}',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87,
-                                fontFamily: 'Amiri',
+                            Container(
+                              padding: EdgeInsets.all(12.w),
+                              decoration: BoxDecoration(
+                                color: AppColors.primary.withValues(alpha: 0.1),
+                                borderRadius: BorderRadius.circular(16.r),
+                              ),
+                              child: Icon(
+                                Icons.multitrack_audio_rounded,
+                                color: AppColors.primary,
+                                size: 24.sp,
                               ),
                             ),
-                            Text(
-                              _formatDuration(state.position) +
-                                  " / " +
-                                  _formatDuration(state.duration),
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                color: Colors.black54,
+                            SizedBox(width: 16.w),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'آية عشوائية',
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                      fontFamily: 'Amiri',
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                  SizedBox(height: 4.h),
+                                  Text(
+                                    "${_formatDuration(state.position)} / ${_formatDuration(state.duration)}",
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      color: Colors.grey[600],
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+
+                        SizedBox(height: 10.h),
+
+                        // Progress Slider
+                        SizedBox(
+                          height: 20.h,
+                          child: state.duration.inSeconds > 0
+                              ? SliderTheme(
+                                  data: SliderTheme.of(context).copyWith(
+                                    activeTrackColor: AppColors.primary,
+                                    inactiveTrackColor: AppColors.primary
+                                        .withValues(alpha: 0.1),
+                                    thumbColor: AppColors.primary,
+                                    trackShape: RoundedRectSliderTrackShape(),
+                                    trackHeight: 4.0,
+                                    thumbShape: RoundSliderThumbShape(
+                                      enabledThumbRadius: 6.0,
+                                    ),
+                                    overlayShape: RoundSliderOverlayShape(
+                                      overlayRadius: 14.0,
+                                    ),
+                                  ),
+                                  child: Slider(
+                                    value: state.position.inSeconds
+                                        .toDouble()
+                                        .clamp(
+                                          0,
+                                          state.duration.inSeconds.toDouble(),
+                                        ),
+                                    max: state.duration.inSeconds.toDouble(),
+                                    onChanged: (value) {
+                                      context.read<BottomPlayerCubit>().seek(
+                                        Duration(seconds: value.toInt()),
+                                      );
+                                    },
+                                  ),
+                                )
+                              : Center(
+                                  child: Container(
+                                    height: 4.0,
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 24.w,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                  ),
+                                ),
+                        ),
+
+                        SizedBox(height: 12.h),
+
+                        // Controls
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Shuffle
+                            IconButton(
+                              onPressed: () => context
+                                  .read<BottomPlayerCubit>()
+                                  .playRandomAyah(),
+                              icon: Icon(
+                                Icons.shuffle_rounded,
+                                color: Colors.grey[600],
+                                size: 20.sp,
+                              ),
+                              splashRadius: 20.r,
+                            ),
+
+                            // Previous
+                            IconButton(
+                              onPressed: () => context
+                                  .read<BottomPlayerCubit>()
+                                  .playPrevious(),
+                              icon: Icon(
+                                Icons.skip_previous_rounded,
+                                color: Colors.black87,
+                                size: 28.sp,
+                              ),
+                            ),
+
+                            // Play/Pause Main Button
+                            InkWell(
+                              onTap: () {
+                                if (state.audioData != null &&
+                                    state.audioData!.id != null) {
+                                  context
+                                      .read<BottomPlayerCubit>()
+                                      .playQuranAudio(state.audioData!.id!);
+                                } else {
+                                  context
+                                      .read<BottomPlayerCubit>()
+                                      .playRandomAyah();
+                                }
+                              },
+                              borderRadius: BorderRadius.circular(50.r),
+                              child: Container(
+                                height: 64.h,
+                                width: 64.h,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.primary,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.3,
+                                      ),
+                                      blurRadius: 12,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: _buildPlayIcon(state.status),
+                              ),
+                            ),
+
+                            // Next
+                            IconButton(
+                              onPressed: () =>
+                                  context.read<BottomPlayerCubit>().playNext(),
+                              icon: Icon(
+                                Icons.skip_next_rounded,
+                                color: Colors.black87,
+                                size: 28.sp,
+                              ),
+                            ),
+
+                            // Replay
+                            IconButton(
+                              onPressed: () =>
+                                  context.read<BottomPlayerCubit>().replay(),
+                              icon: Icon(
+                                Icons.replay_rounded,
+                                color: Colors.grey[600],
+                                size: 22.sp,
+                              ),
+                              splashRadius: 20.r,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-
-                SizedBox(height: 8.h),
-
-                // Controls Row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    IconButton(
-                      onPressed: () =>
-                          context.read<BottomPlayerCubit>().playRandomAyah(),
-                      icon: Icon(
-                        Icons.shuffle,
-                        color: Colors.black87,
-                        size: 20.sp,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () =>
-                          context.read<BottomPlayerCubit>().playPrevious(),
-                      icon: Icon(
-                        Icons.skip_previous_rounded,
-                        color: Colors.black87,
-                        size: 32.sp,
-                      ),
-                    ),
-
-                    // Play/Pause
-                    GestureDetector(
-                      onTap: () {
-                        if (state.audioData != null &&
-                            state.audioData!.id != null) {
-                          context.read<BottomPlayerCubit>().playQuranAudio(
-                            state.audioData!.id!,
-                          );
-                        } else {
-                          context.read<BottomPlayerCubit>().playRandomAyah();
-                        }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(8.w),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle,
-                        ),
-                        child: _buildPlayIcon(state.status),
-                      ),
-                    ),
-
-                    IconButton(
-                      onPressed: () =>
-                          context.read<BottomPlayerCubit>().playNext(),
-                      icon: Icon(
-                        Icons.skip_next_rounded,
-                        color: Colors.black87,
-                        size: 32.sp,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () =>
-                          context.read<BottomPlayerCubit>().replay(),
-                      icon: Icon(
-                        Icons.replay,
-                        color: Colors.black87,
-                        size: 24.sp,
-                      ),
-                    ),
-                  ],
-                ),
-
-                // Progress Indicator
-                if (state.duration.inSeconds > 0)
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 0),
-                    child: SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        thumbShape: RoundSliderThumbShape(
-                          enabledThumbRadius: 6.0,
-                        ),
-                        overlayShape: RoundSliderOverlayShape(
-                          overlayRadius: 14.0,
-                        ),
-                        trackHeight: 2.0,
-                        activeTrackColor: Colors.white,
-                        inactiveTrackColor: Colors.black12,
-                        thumbColor: Colors.white,
-                      ),
-                      child: Slider(
-                        value: state.position.inSeconds.toDouble().clamp(
-                          0,
-                          state.duration.inSeconds.toDouble(),
-                        ),
-                        max: state.duration.inSeconds.toDouble(),
-                        onChanged: (value) {
-                          context.read<BottomPlayerCubit>().seek(
-                            Duration(seconds: value.toInt()),
-                          );
-                        },
-                      ),
-                    ),
-                  )
-                else
-                  SizedBox(height: 10.h),
-              ],
+                ],
+              ),
             ),
           ),
         );
@@ -196,18 +261,20 @@ class BottomPlayerWidget extends StatelessWidget {
 
   Widget _buildPlayIcon(BottomPlayerStatus status) {
     if (status == BottomPlayerStatus.loading) {
-      return SizedBox(
-        width: 24.w,
-        height: 24.h,
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-          color: AppColors.secondary,
+      return Center(
+        child: SizedBox(
+          width: 24.w,
+          height: 24.h,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: Colors.white,
+          ),
         ),
       );
     } else if (status == BottomPlayerStatus.playing) {
-      return Icon(Icons.pause, color: AppColors.secondary, size: 30.sp);
+      return Icon(Icons.pause_rounded, color: Colors.white, size: 32.sp);
     } else {
-      return Icon(Icons.play_arrow, color: AppColors.secondary, size: 30.sp);
+      return Icon(Icons.play_arrow_rounded, color: Colors.white, size: 36.sp);
     }
   }
 

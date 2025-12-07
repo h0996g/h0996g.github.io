@@ -7,6 +7,8 @@ class BottomPlayerState extends Equatable {
   final BottomPlayerStatus status;
   final QuranAudioModel? audioData;
   final String? errorMessage;
+  final List<int> history;
+  final int historyIndex;
   final Duration position;
   final Duration duration;
 
@@ -16,6 +18,8 @@ class BottomPlayerState extends Equatable {
     this.errorMessage,
     this.position = Duration.zero,
     this.duration = Duration.zero,
+    this.history = const [],
+    this.historyIndex = -1,
   });
 
   BottomPlayerState copyWith({
@@ -24,6 +28,8 @@ class BottomPlayerState extends Equatable {
     String? errorMessage,
     Duration? position,
     Duration? duration,
+    List<int>? history,
+    int? historyIndex,
   }) {
     return BottomPlayerState(
       status: status ?? this.status,
@@ -31,6 +37,8 @@ class BottomPlayerState extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
       position: position ?? this.position,
       duration: duration ?? this.duration,
+      history: history ?? this.history,
+      historyIndex: historyIndex ?? this.historyIndex,
     );
   }
 
@@ -39,6 +47,8 @@ class BottomPlayerState extends Equatable {
     status,
     audioData,
     errorMessage,
+    history,
+    historyIndex,
     position,
     duration,
   ];
