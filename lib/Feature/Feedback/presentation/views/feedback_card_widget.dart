@@ -14,7 +14,6 @@ class FeedbackCard extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 100.h,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(16.r),
@@ -53,7 +52,7 @@ class FeedbackCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Send Feedback',
+                        "ارسل ملاحظة",
                         style: TextStyle(
                           fontSize: 18.sp,
                           fontWeight: FontWeight.bold,
@@ -62,7 +61,7 @@ class FeedbackCard extends StatelessWidget {
                       ),
                       SizedBox(height: 4.h),
                       Text(
-                        'Report bugs or suggest features',
+                        'ابلغ عن مشكلة أو اقتراح',
                         style: TextStyle(
                           fontSize: 13.sp,
                           color: Colors.grey[600],

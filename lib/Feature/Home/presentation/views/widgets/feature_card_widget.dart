@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FeatureCard extends StatelessWidget {
   final String title;
-  final String subtitle;
+
   final String imagePath;
   final Color color;
   final VoidCallback onTap;
@@ -11,7 +11,7 @@ class FeatureCard extends StatelessWidget {
   const FeatureCard({
     super.key,
     required this.title,
-    required this.subtitle,
+
     required this.imagePath,
     required this.color,
     required this.onTap,
@@ -22,7 +22,7 @@ class FeatureCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 180.h,
+        padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -54,10 +54,10 @@ class FeatureCard extends StatelessWidget {
 
             // Content
             Padding(
-              padding: EdgeInsets.all(20.w),
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Image.asset(
                     imagePath,
@@ -65,7 +65,7 @@ class FeatureCard extends StatelessWidget {
                     height: 40.sp,
                     // color: Colors.white,
                   ),
-                  SizedBox(height: 12.h),
+                  SizedBox(height: 20.h),
                   Text(
                     title,
                     style: TextStyle(
@@ -73,15 +73,6 @@ class FeatureCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       fontFamily: 'Amiri',
-                    ),
-                  ),
-                  SizedBox(height: 4.h),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: 13.sp,
-                      color: Colors.white.withValues(alpha: 0.9),
-                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 ],

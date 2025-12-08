@@ -6,6 +6,9 @@ import 'package:noor/Feature/Home/data/repo/home_repo.dart';
 import 'package:noor/Feature/Home/presentation/manager/bottom_player_cubit.dart';
 import 'package:noor/Feature/Home/presentation/views/start_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
+
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 Future<void> main() async {
   await AppUtils.initializeApp();
@@ -22,14 +25,41 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return BlocProvider(
-          create: (context) =>
-              BottomPlayerCubit(HomeRepository(Supabase.instance.client)),
-          child: MaterialApp(
-            title: 'Noor',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(useMaterial3: true),
-            home: const StartPage(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) =>
+                  BottomPlayerCubit(HomeRepository(Supabase.instance.client)),
+            ),
+            BlocProvider(create: (context) => SettingsCubit()),
+          ],
+          child: BlocBuilder<SettingsCubit, SettingsState>(
+            builder: (context, state) {
+              return MaterialApp(
+                title: 'Noor',
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(useMaterial3: true),
+                locale: const Locale('ar', 'SA'),
+                supportedLocales: const [
+                  Locale('ar', 'SA'),
+                  Locale('en', 'US'),
+                ],
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                builder: (context, child) {
+                  return MediaQuery(
+                    data: MediaQuery.of(context).copyWith(
+                      textScaler: TextScaler.linear(state.textScaleFactor),
+                    ),
+                    child: child!,
+                  );
+                },
+                home: const StartPage(),
+              );
+            },
           ),
         );
       },

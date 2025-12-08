@@ -14,7 +14,6 @@ class TasbihCard extends StatelessWidget {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          height: 140.h,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -76,15 +75,6 @@ class TasbihCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                               fontFamily: 'Amiri',
-                            ),
-                          ),
-                          SizedBox(height: 6.h),
-                          Text(
-                            'Digital Tasbih Counter',
-                            style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.white.withValues(alpha: 0.9),
-                              fontWeight: FontWeight.w300,
                             ),
                           ),
                         ],

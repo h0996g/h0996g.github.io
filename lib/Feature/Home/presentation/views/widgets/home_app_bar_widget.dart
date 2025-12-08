@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../Core/theme/app_colors.dart';
+import '../../../../Settings/presentation/views/settings_page.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -29,7 +30,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'السلام عليكم',
+            'رفيق المسلم',
             style: TextStyle(
               fontSize: 22.sp,
               fontWeight: FontWeight.bold,
@@ -37,28 +38,28 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               fontFamily: 'Amiri',
             ),
           ),
-          Text(
-            'Welcome to Noor',
-            style: TextStyle(
-              fontSize: 13.sp,
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
-            ),
-          ),
         ],
       ),
       actions: [
-        Container(
-          margin: EdgeInsets.only(right: 12.w),
-          padding: EdgeInsets.all(8.w),
-          decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.2),
-            borderRadius: BorderRadius.circular(12.r),
-          ),
-          child: Icon(
-            Icons.notifications_outlined,
-            color: Colors.white,
-            size: 24.sp,
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SettingsPage()),
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.only(right: 12.w),
+            padding: EdgeInsets.all(8.w),
+            decoration: BoxDecoration(
+              color: Colors.white.withValues(alpha: 0.2),
+              borderRadius: BorderRadius.circular(12.r),
+            ),
+            child: Icon(
+              Icons.settings_outlined,
+              color: Colors.white,
+              size: 24.sp,
+            ),
           ),
         ),
       ],

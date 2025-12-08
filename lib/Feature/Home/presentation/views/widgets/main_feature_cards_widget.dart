@@ -24,7 +24,7 @@ class MainFeatureCards extends StatelessWidget {
           Expanded(
             child: FeatureCard(
               title: 'القرآن الكريم',
-              subtitle: 'Holy Quran',
+
               imagePath: AppImages.quran,
               color: AppColors.primary,
               onTap: () {
@@ -47,7 +47,7 @@ class MainFeatureCards extends StatelessWidget {
           Expanded(
             child: FeatureCard(
               title: 'الأذكار',
-              subtitle: 'Daily Adkar',
+
               imagePath: AppImages.openHands,
               color: AppColors.third,
               onTap: () {
