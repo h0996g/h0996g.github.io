@@ -5,8 +5,9 @@ import 'package:noor/Core/theme/app_colors.dart';
 import '../../presentation/manager/adkar_cubit.dart';
 import '../../presentation/manager/adkar_state.dart';
 import '../../data/models/adkar_detail_model.dart';
+import '../../../Home/presentation/views/widgets/bottom_player_widget.dart';
 
-class AdkarDetailsPage extends StatelessWidget {
+class AdkarDetailsPage extends StatefulWidget {
   final int sectionId;
   final String sectionName;
 
@@ -17,11 +18,24 @@ class AdkarDetailsPage extends StatelessWidget {
   });
 
   @override
+  State<AdkarDetailsPage> createState() => _AdkarDetailsPageState();
+}
+
+class _AdkarDetailsPageState extends State<AdkarDetailsPage> {
+  final Set<int> _completedIndices = {};
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<AdkarCubit>().loadSectionDetails(widget.sectionId);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          sectionName,
+          widget.sectionName,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -45,11 +59,67 @@ class AdkarDetailsPage extends StatelessWidget {
                 child: Text('لا توجد أذكار متاحة في هذا القسم'),
               );
             }
+
+            final allFinished =
+                _completedIndices.length == state.details.length &&
+                state.details.isNotEmpty;
+
+            if (allFinished) {
+              return Center(
+                child: Padding(
+                  padding: EdgeInsets.all(24.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.check_circle_outline_rounded,
+                        size: 80.sp,
+                        color: AppColors.primary,
+                      ),
+                      SizedBox(height: 16.h),
+                      Text(
+                        'تم الانتهاء من الأذكار',
+                        style: TextStyle(
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Amiri',
+                          color: AppColors.primary,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Text(
+                        'تقبل الله منا ومنكم صالح الأعمال',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      SizedBox(height: 40.h),
+                      const BottomPlayerWidget(),
+                    ],
+                  ),
+                ),
+              );
+            }
+
             return ListView.builder(
               padding: EdgeInsets.all(16.w),
               itemCount: state.details.length,
               itemBuilder: (context, index) {
-                return _AdkarItem(detail: state.details[index]);
+                if (_completedIndices.contains(index)) {
+                  return const SizedBox.shrink();
+                }
+                return _AdkarItem(
+                  key: ValueKey(
+                    index,
+                  ), // Important for state preservation if needed
+                  detail: state.details[index],
+                  onCompleted: () {
+                    setState(() {
+                      _completedIndices.add(index);
+                    });
+                  },
+                );
               },
             );
           }
@@ -62,8 +132,13 @@ class AdkarDetailsPage extends StatelessWidget {
 
 class _AdkarItem extends StatefulWidget {
   final AdkarDetailModel detail;
+  final VoidCallback onCompleted;
 
-  const _AdkarItem({required this.detail});
+  const _AdkarItem({
+    super.key,
+    required this.detail,
+    required this.onCompleted,
+  });
 
   @override
   State<_AdkarItem> createState() => _AdkarItemState();
@@ -83,13 +158,20 @@ class _AdkarItemState extends State<_AdkarItem> {
       setState(() {
         count--;
       });
+      if (count == 0) {
+        // Small delay to let the user see the "0" or just disappear?
+        // User experience: usually instant or short delay.
+        // Let's do a tiny delay for better feel or immediate.
+        // Immediate is fine as per usual Adkar apps.
+        widget.onCompleted();
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     if (count == 0) {
-      return const SizedBox.shrink(); // Hide the item when count is 0
+      return const SizedBox.shrink();
     }
     return GestureDetector(
       onTap: _decrementCount,
