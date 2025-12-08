@@ -108,151 +108,150 @@ class BottomPlayerWidget extends StatelessWidget {
                         SizedBox(height: 10.h),
 
                         // Progress Slider
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: SizedBox(
-                            height: 20.h,
-                            child: state.duration.inSeconds > 0
-                                ? SliderTheme(
-                                    data: SliderTheme.of(context).copyWith(
-                                      activeTrackColor: AppColors.primary,
-                                      inactiveTrackColor: AppColors.primary
-                                          .withValues(alpha: 0.1),
-                                      thumbColor: AppColors.primary,
-                                      trackShape: RoundedRectSliderTrackShape(),
-                                      trackHeight: 4.0,
-                                      thumbShape: RoundSliderThumbShape(
-                                        enabledThumbRadius: 6.0,
-                                      ),
-                                      overlayShape: RoundSliderOverlayShape(
-                                        overlayRadius: 14.0,
-                                      ),
+                        SizedBox(
+                          height: 20.h,
+                          child: state.duration.inSeconds > 0
+                              ? SliderTheme(
+                                  data: SliderTheme.of(context).copyWith(
+                                    activeTrackColor: AppColors.primary,
+                                    inactiveTrackColor: AppColors.primary
+                                        .withValues(alpha: 0.1),
+                                    thumbColor: AppColors.primary,
+                                    trackShape: RoundedRectSliderTrackShape(),
+                                    trackHeight: 4.0,
+                                    thumbShape: RoundSliderThumbShape(
+                                      enabledThumbRadius: 6.0,
                                     ),
-                                    child: Slider(
-                                      value: state.position.inSeconds
-                                          .toDouble()
-                                          .clamp(
-                                            0,
-                                            state.duration.inSeconds.toDouble(),
-                                          ),
-                                      max: state.duration.inSeconds.toDouble(),
-                                      onChanged: (value) {
-                                        context.read<BottomPlayerCubit>().seek(
-                                          Duration(seconds: value.toInt()),
-                                        );
-                                      },
-                                    ),
-                                  )
-                                : Center(
-                                    child: Container(
-                                      height: 4.0,
-                                      margin: EdgeInsets.symmetric(
-                                        horizontal: 24.w,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: AppColors.primary.withValues(
-                                          alpha: 0.1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(2),
-                                      ),
+                                    overlayShape: RoundSliderOverlayShape(
+                                      overlayRadius: 14.0,
                                     ),
                                   ),
-                          ),
+                                  child: Slider(
+                                    value: state.position.inSeconds
+                                        .toDouble()
+                                        .clamp(
+                                          0,
+                                          state.duration.inSeconds.toDouble(),
+                                        ),
+                                    max: state.duration.inSeconds.toDouble(),
+                                    onChanged: (value) {
+                                      context.read<BottomPlayerCubit>().seek(
+                                        Duration(seconds: value.toInt()),
+                                      );
+                                    },
+                                  ),
+                                )
+                              : Center(
+                                  child: Container(
+                                    height: 4.0,
+                                    margin: EdgeInsets.symmetric(
+                                      horizontal: 24.w,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                  ),
+                                ),
                         ),
 
                         SizedBox(height: 12.h),
 
                         // Controls
-                        Directionality(
-                          textDirection: TextDirection.ltr,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Shuffle
-                              IconButton(
-                                onPressed: () => context
-                                    .read<BottomPlayerCubit>()
-                                    .playRandomAyah(),
-                                icon: Icon(
-                                  Icons.shuffle_rounded,
-                                  color: Colors.grey[600],
-                                  size: 20.sp,
-                                ),
-                                splashRadius: 20.r,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            // Shuffle
+                            IconButton(
+                              onPressed: () => context
+                                  .read<BottomPlayerCubit>()
+                                  .playRandomAyah(),
+                              icon: Icon(
+                                Icons.shuffle_rounded,
+                                color: Colors.grey[600],
+                                size: 20.sp,
                               ),
+                              splashRadius: 20.r,
+                            ),
 
-                              // Previous
-                              IconButton(
-                                onPressed: () => context
-                                    .read<BottomPlayerCubit>()
-                                    .playPrevious(),
-                                icon: Icon(
+                            // Previous
+                            IconButton(
+                              onPressed: () => context
+                                  .read<BottomPlayerCubit>()
+                                  .playPrevious(),
+                              icon: Transform.flip(
+                                flipX: true,
+                                child: Icon(
                                   Icons.skip_previous_rounded,
                                   color: Colors.black87,
                                   size: 28.sp,
                                 ),
                               ),
+                            ),
 
-                              // Play/Pause Main Button
-                              InkWell(
-                                onTap: () {
-                                  if (state.audioData != null &&
-                                      state.audioData!.id != null) {
-                                    context
-                                        .read<BottomPlayerCubit>()
-                                        .playQuranAudio(state.audioData!.id!);
-                                  } else {
-                                    context
-                                        .read<BottomPlayerCubit>()
-                                        .playRandomAyah();
-                                  }
-                                },
-                                borderRadius: BorderRadius.circular(50.r),
-                                child: Container(
-                                  height: 64.h,
-                                  width: 64.h,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColors.primary,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: AppColors.primary.withValues(
-                                          alpha: 0.3,
-                                        ),
-                                        blurRadius: 12,
-                                        offset: Offset(0, 4),
+                            // Play/Pause Main Button
+                            InkWell(
+                              onTap: () {
+                                if (state.audioData != null &&
+                                    state.audioData!.id != null) {
+                                  context
+                                      .read<BottomPlayerCubit>()
+                                      .playQuranAudio(state.audioData!.id!);
+                                } else {
+                                  context
+                                      .read<BottomPlayerCubit>()
+                                      .playRandomAyah();
+                                }
+                              },
+                              borderRadius: BorderRadius.circular(50.r),
+                              child: Container(
+                                height: 64.h,
+                                width: 64.h,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColors.primary,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.3,
                                       ),
-                                    ],
-                                  ),
-                                  child: _buildPlayIcon(state.status),
+                                      blurRadius: 12,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
                                 ),
+                                child: _buildPlayIcon(state.status),
                               ),
+                            ),
 
-                              // Next
-                              IconButton(
-                                onPressed: () => context
-                                    .read<BottomPlayerCubit>()
-                                    .playNext(),
-                                icon: Icon(
+                            // Next
+                            IconButton(
+                              onPressed: () =>
+                                  context.read<BottomPlayerCubit>().playNext(),
+                              icon: Transform.flip(
+                                flipX: true,
+                                child: Icon(
                                   Icons.skip_next_rounded,
                                   color: Colors.black87,
                                   size: 28.sp,
                                 ),
                               ),
+                            ),
 
-                              // Replay
-                              IconButton(
-                                onPressed: () =>
-                                    context.read<BottomPlayerCubit>().replay(),
-                                icon: Icon(
-                                  Icons.replay_rounded,
-                                  color: Colors.grey[600],
-                                  size: 22.sp,
-                                ),
-                                splashRadius: 20.r,
+                            // Replay
+                            IconButton(
+                              onPressed: () =>
+                                  context.read<BottomPlayerCubit>().replay(),
+                              icon: Icon(
+                                Icons.replay_rounded,
+                                color: Colors.grey[600],
+                                size: 22.sp,
                               ),
-                            ],
-                          ),
+                              splashRadius: 20.r,
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -281,7 +280,10 @@ class BottomPlayerWidget extends StatelessWidget {
     } else if (status == BottomPlayerStatus.playing) {
       return Icon(Icons.pause_rounded, color: Colors.white, size: 32.sp);
     } else {
-      return Icon(Icons.play_arrow_rounded, color: Colors.white, size: 36.sp);
+      return Transform.flip(
+        flipX: true,
+        child: Icon(Icons.play_arrow_rounded, color: Colors.white, size: 36.sp),
+      );
     }
   }
 

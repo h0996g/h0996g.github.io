@@ -44,10 +44,11 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
             ),
             SizedBox(height: 20.h),
             Text(
-              'Select Attachment Type',
+              'اختر نوع المرفق',
               style: TextStyle(
                 fontSize: 18.sp,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Amiri',
                 color: Colors.black87,
               ),
             ),
@@ -57,7 +58,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                 Expanded(
                   child: _MediaOptionCard(
                     icon: Icons.image_rounded,
-                    label: 'Photo',
+                    label: 'صورة',
                     color: AppColors.primary,
                     onTap: () async {
                       Navigator.pop(context);
@@ -74,7 +75,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                 Expanded(
                   child: _MediaOptionCard(
                     icon: Icons.videocam_rounded,
-                    label: 'Video',
+                    label: 'فيديو',
                     color: AppColors.third,
                     onTap: () async {
                       Navigator.pop(context);
@@ -118,14 +119,14 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
             Navigator.pop(context);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message ?? "Success"),
+                content: Text(state.message ?? "تم الإرسال بنجاح"),
                 backgroundColor: Colors.green,
               ),
             );
           } else if (state.status == FeedbackStatus.error) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.message ?? "Error"),
+                content: Text(state.message ?? "حدث خطأ"),
                 backgroundColor: Colors.red,
               ),
             );
@@ -153,10 +154,11 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Feedback',
+                    'الملاحظات والاقتراحات',
                     style: TextStyle(
                       fontSize: 20.sp,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Amiri',
                       color: AppColors.primary,
                     ),
                     textAlign: TextAlign.center,
@@ -165,8 +167,12 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
 
                   // Method Selection
                   Text(
-                    'How would you like to send feedback?',
-                    style: TextStyle(fontSize: 14.sp, color: Colors.grey[700]),
+                    'كيف تود إرسال ملاحظاتك؟',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.grey[700],
+                      fontFamily: 'Amiri',
+                    ),
                   ),
                   SizedBox(height: 10.h),
                   SingleChildScrollView(
@@ -175,7 +181,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         _SelectionChip(
-                          label: 'Anonymous',
+                          label: 'مجهول',
                           icon: Icons.person_off_outlined,
                           isSelected:
                               _selectedMethod == FeedbackMethod.anonymous,
@@ -185,7 +191,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                         ),
                         SizedBox(width: 10.w),
                         _SelectionChip(
-                          label: 'Email',
+                          label: 'بريد إلكتروني',
                           icon: Icons.email_outlined,
                           isSelected: _selectedMethod == FeedbackMethod.email,
                           onTap: () => setState(
@@ -194,7 +200,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                         ),
                         SizedBox(width: 10.w),
                         _SelectionChip(
-                          label: 'WhatsApp',
+                          label: 'واتساب',
                           icon: Icons.chat_bubble_outline,
                           isSelected:
                               _selectedMethod == FeedbackMethod.whatsapp,
@@ -217,8 +223,8 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                           : TextInputType.phone,
                       decoration: InputDecoration(
                         hintText: _selectedMethod == FeedbackMethod.email
-                            ? 'Enter your email address'
-                            : 'Enter your WhatsApp number',
+                            ? 'أدخل بريدك الإلكتروني'
+                            : 'أدخل رقم الواتساب',
                         prefixIcon: Icon(
                           _selectedMethod == FeedbackMethod.email
                               ? Icons.email
@@ -251,7 +257,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                     controller: _descriptionController,
                     maxLines: 4,
                     decoration: InputDecoration(
-                      hintText: 'Tell us what you think...',
+                      hintText: 'أخبرنا برأيك...',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
                         borderSide: BorderSide(color: Colors.grey[300]!),
@@ -294,11 +300,12 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                           SizedBox(width: 8.w),
                           Text(
                             _selectedMedia == null
-                                ? 'Attach Image or Video'
-                                : 'Media Selected',
+                                ? 'إرفاق صورة أو فيديو'
+                                : 'تم اختيار المرفق',
                             style: TextStyle(
                               color: AppColors.third,
                               fontWeight: FontWeight.w600,
+                              fontFamily: 'Amiri',
                             ),
                           ),
                           if (_selectedMedia != null) ...[
@@ -362,8 +369,11 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
                             ),
                           )
                         : const Text(
-                            'Send Feedback',
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            'إرسال الملاحظة',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Amiri',
+                            ),
                           ),
                   ),
                   SizedBox(height: 10.h),
@@ -418,6 +428,7 @@ class _SelectionChip extends StatelessWidget {
                 color: isSelected ? Colors.white : Colors.grey[600],
                 fontWeight: FontWeight.w600,
                 fontSize: 13.sp,
+                fontFamily: 'Amiri',
               ),
             ),
           ],
@@ -475,6 +486,7 @@ class _MediaOptionCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14.sp,
                 fontWeight: FontWeight.bold,
+                fontFamily: 'Amiri',
                 color: color,
               ),
             ),
