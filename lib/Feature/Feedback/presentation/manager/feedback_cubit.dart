@@ -1,12 +1,17 @@
+import 'dart:io';
+
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'feedback_state.dart';
 
 class FeedbackCubit extends Cubit<FeedbackState> {
   final SupabaseClient _supabaseClient;
+  final DeviceInfoPlugin _deviceInfo = DeviceInfoPlugin();
 
   FeedbackCubit(this._supabaseClient) : super(const FeedbackState());
 
@@ -40,6 +45,9 @@ class FeedbackCubit extends Cubit<FeedbackState> {
     emit(state.copyWith(status: FeedbackStatus.loading));
 
     try {
+      // Collect Device Info
+      final Map<String, dynamic> deviceInfo = await _getDeviceInfo();
+
       String? attachmentUrl;
 
       if (attachment != null) {
@@ -67,6 +75,7 @@ class FeedbackCubit extends Cubit<FeedbackState> {
         'is_anonymous': method == FeedbackMethod.anonymous,
         'contact_method': method.name,
         'contact_info': contactInfo,
+        'device_info': deviceInfo,
       });
 
       emit(
@@ -84,6 +93,40 @@ class FeedbackCubit extends Cubit<FeedbackState> {
           message: "Failed to send feedback: ${e.toString()}",
         ),
       );
+    }
+  }
+
+  Future<Map<String, dynamic>> _getDeviceInfo() async {
+    try {
+      final PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      final Map<String, dynamic> info = {
+        'app_version': packageInfo.version,
+        'build_number': packageInfo.buildNumber,
+        'platform': Platform.operatingSystem,
+      };
+
+      if (Platform.isAndroid) {
+        final AndroidDeviceInfo androidInfo = await _deviceInfo.androidInfo;
+        info.addAll({
+          'device': androidInfo.device,
+          'manufacturer': androidInfo.manufacturer,
+          'model': androidInfo.model,
+          'android_version': androidInfo.version.release,
+          'sdk_int': androidInfo.version.sdkInt,
+        });
+      } else if (Platform.isIOS) {
+        final IosDeviceInfo iosInfo = await _deviceInfo.iosInfo;
+        info.addAll({
+          'device': iosInfo.name,
+          'model': iosInfo.model,
+          'system_name': iosInfo.systemName,
+          'system_version': iosInfo.systemVersion,
+          'utsname': iosInfo.utsname.machine,
+        });
+      }
+      return info;
+    } catch (e) {
+      return {'error': 'Failed to get device info: $e'};
     }
   }
 }

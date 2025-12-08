@@ -22,38 +22,74 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
   final ImagePicker _picker = ImagePicker();
 
   Future<void> _pickMedia() async {
-    // Show dialog to pick Image or Video
     showModalBottomSheet(
       context: context,
-      builder: (context) => SafeArea(
-        child: Wrap(
+      backgroundColor: Colors.transparent,
+      builder: (context) => Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+        ),
+        padding: EdgeInsets.all(24.w),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            ListTile(
-              leading: const Icon(Icons.image),
-              title: const Text('Image'),
-              onTap: () async {
-                Navigator.pop(context);
-                final XFile? image = await _picker.pickImage(
-                  source: ImageSource.gallery,
-                );
-                if (image != null) {
-                  setState(() => _selectedMedia = image);
-                }
-              },
+            Container(
+              width: 40.w,
+              height: 4.h,
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(2.r),
+              ),
             ),
-            ListTile(
-              leading: const Icon(Icons.videocam),
-              title: const Text('Video'),
-              onTap: () async {
-                Navigator.pop(context);
-                final XFile? video = await _picker.pickVideo(
-                  source: ImageSource.gallery,
-                );
-                if (video != null) {
-                  setState(() => _selectedMedia = video);
-                }
-              },
+            SizedBox(height: 20.h),
+            Text(
+              'Select Attachment Type',
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.black87,
+              ),
             ),
+            SizedBox(height: 24.h),
+            Row(
+              children: [
+                Expanded(
+                  child: _MediaOptionCard(
+                    icon: Icons.image_rounded,
+                    label: 'Photo',
+                    color: AppColors.primary,
+                    onTap: () async {
+                      Navigator.pop(context);
+                      final XFile? image = await _picker.pickImage(
+                        source: ImageSource.gallery,
+                      );
+                      if (image != null) {
+                        setState(() => _selectedMedia = image);
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(width: 16.w),
+                Expanded(
+                  child: _MediaOptionCard(
+                    icon: Icons.videocam_rounded,
+                    label: 'Video',
+                    color: AppColors.third,
+                    onTap: () async {
+                      Navigator.pop(context);
+                      final XFile? video = await _picker.pickVideo(
+                        source: ImageSource.gallery,
+                      );
+                      if (video != null) {
+                        setState(() => _selectedMedia = video);
+                      }
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 24.h),
           ],
         ),
       ),
@@ -382,6 +418,64 @@ class _SelectionChip extends StatelessWidget {
                 color: isSelected ? Colors.white : Colors.grey[600],
                 fontWeight: FontWeight.w600,
                 fontSize: 13.sp,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _MediaOptionCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final Color color;
+  final VoidCallback onTap;
+
+  const _MediaOptionCard({
+    required this.icon,
+    required this.label,
+    required this.color,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: 120.h,
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: color.withValues(alpha: 0.2), width: 1.5.w),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              padding: EdgeInsets.all(12.w),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: color.withValues(alpha: 0.2),
+                    blurRadius: 8.r,
+                    offset: Offset(0, 4.h),
+                  ),
+                ],
+              ),
+              child: Icon(icon, color: color, size: 28.sp),
+            ),
+            SizedBox(height: 12.h),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 14.sp,
+                fontWeight: FontWeight.bold,
+                color: color,
               ),
             ),
           ],
