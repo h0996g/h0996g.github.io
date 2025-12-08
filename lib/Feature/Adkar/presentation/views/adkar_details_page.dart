@@ -7,6 +7,8 @@ import '../../presentation/manager/adkar_state.dart';
 import '../../data/models/adkar_detail_model.dart';
 import '../../../Home/presentation/views/widgets/bottom_player_widget.dart';
 
+import 'package:noor/Core/widgets/custom_app_bar.dart';
+
 class AdkarDetailsPage extends StatefulWidget {
   final int sectionId;
   final String sectionName;
@@ -33,18 +35,7 @@ class _AdkarDetailsPageState extends State<AdkarDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.sectionName,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.primary,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
+      appBar: CustomAppBar(title: widget.sectionName),
       body: BlocBuilder<AdkarCubit, AdkarState>(
         builder: (context, state) {
           if (state.status == AdkarStatus.loading) {

@@ -8,6 +8,8 @@ import '../../data/models/ayah_model.dart';
 import '../../presentation/manager/audio_cubit.dart';
 import '../../presentation/manager/audio_state.dart';
 
+import 'package:noor/Core/widgets/custom_app_bar.dart';
+
 class SurahDetailPage extends StatelessWidget {
   final SurahModel surah;
 
@@ -16,19 +18,7 @@ class SurahDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          surah.name,
-          style: TextStyle(
-            fontSize: 22.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.primary,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
+      appBar: CustomAppBar(title: surah.name),
       body: Container(
         padding: EdgeInsets.all(16.w),
         child: ListView.builder(

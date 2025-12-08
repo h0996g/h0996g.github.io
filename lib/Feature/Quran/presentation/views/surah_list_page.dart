@@ -7,21 +7,15 @@ import '../../presentation/manager/quran_cubit.dart';
 import '../../presentation/manager/quran_state.dart';
 import 'surah_detail_page.dart';
 
+import 'package:noor/Core/widgets/custom_app_bar.dart';
+
 class SurahListPage extends StatelessWidget {
   const SurahListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'السور',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.primary,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
+      appBar: const CustomAppBar(title: 'السور'),
       body: BlocBuilder<QuranCubit, QuranState>(
         builder: (context, state) {
           if (state.status == QuranStatus.loading) {

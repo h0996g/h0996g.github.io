@@ -8,6 +8,8 @@ import '../../presentation/manager/names_of_allah_state.dart';
 import '../../data/models/name_of_allah_model.dart';
 import 'name_detail_dialog.dart';
 
+import 'package:noor/Core/widgets/custom_app_bar.dart';
+
 class NamesOfAllahPage extends StatelessWidget {
   const NamesOfAllahPage({super.key});
 
@@ -17,15 +19,7 @@ class NamesOfAllahPage extends StatelessWidget {
       create: (context) =>
           NamesOfAllahCubit(NamesOfAllahRepository())..loadNames(),
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            'أسماء الله الحسنى',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.primary,
-          iconTheme: const IconThemeData(color: Colors.white),
-        ),
+        appBar: const CustomAppBar(title: 'أسماء الله الحسنى'),
         body: BlocBuilder<NamesOfAllahCubit, NamesOfAllahState>(
           builder: (context, state) {
             if (state.status == NamesOfAllahStatus.loading) {

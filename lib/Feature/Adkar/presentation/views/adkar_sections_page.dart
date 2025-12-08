@@ -7,21 +7,15 @@ import '../../presentation/manager/adkar_cubit.dart';
 import '../../presentation/manager/adkar_state.dart';
 import '../views/adkar_details_page.dart';
 
+import 'package:noor/Core/widgets/custom_app_bar.dart';
+
 class AdkarSectionsPage extends StatelessWidget {
   const AdkarSectionsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'الأذكار',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.primary,
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
+      appBar: const CustomAppBar(title: 'الأذكار'),
       body: BlocBuilder<AdkarCubit, AdkarState>(
         builder: (context, state) {
           if (state.status == AdkarStatus.loading) {

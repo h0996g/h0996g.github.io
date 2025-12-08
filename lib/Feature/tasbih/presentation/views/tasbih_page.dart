@@ -10,6 +10,8 @@ import 'widgets/tasbih_dhikr_selector_widget.dart';
 import 'widgets/tasbih_dhikr_display_widget.dart';
 import 'widgets/tasbih_counter_widget.dart';
 
+import 'package:noor/Core/widgets/custom_app_bar.dart';
+
 class TasbihPage extends StatelessWidget {
   const TasbihPage({super.key});
 
@@ -19,23 +21,7 @@ class TasbihPage extends StatelessWidget {
       create: (context) => TasbihCubit(),
       child: Scaffold(
         backgroundColor: Colors.grey[50],
-        appBar: AppBar(
-          title: Text(
-            'التسبيح',
-            style: TextStyle(
-              fontFamily: 'Amiri',
-              fontWeight: FontWeight.bold,
-              color: Colors.black87,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black87),
-            onPressed: () => Navigator.pop(context),
-          ),
-        ),
+        appBar: const CustomAppBar(title: 'التسبيح'),
         body: SafeArea(
           child: BlocBuilder<TasbihCubit, TasbihState>(
             builder: (context, state) {
