@@ -8,13 +8,14 @@ import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
 import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit.dart';
 import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
-import '../../../../Feedback/presentation/views/widgets/feedback_bottom_sheet.dart';
+
 import '../../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
 import '../../../../Quran/presentation/views/surah_list_page.dart';
 import '../../../../tasbih/presentation/views/tasbih_page.dart';
 import 'widgets/bottom_player_desktop.dart';
 import 'widgets/feature_card_desktop.dart';
 import 'widgets/feedback_card_desktop.dart';
+import 'package:noor/Feature/Feedback/presentation/views/desktop/widgets/feedback_dialog_desktop.dart';
 import 'widgets/home_app_bar_desktop.dart';
 
 class StartPageDesktop extends StatelessWidget {
@@ -122,11 +123,9 @@ class StartPageDesktop extends StatelessWidget {
                     Expanded(
                       child: FeedbackCardDesktop(
                         onTap: () {
-                          showModalBottomSheet(
+                          showDialog(
                             context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (context) => const FeedbackBottomSheet(),
+                            builder: (context) => const FeedbackDialogDesktop(),
                           );
                         },
                       ),

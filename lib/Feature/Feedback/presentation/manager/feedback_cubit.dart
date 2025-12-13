@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
+
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -102,27 +104,39 @@ class FeedbackCubit extends Cubit<FeedbackState> {
       final Map<String, dynamic> info = {
         'app_version': packageInfo.version,
         'build_number': packageInfo.buildNumber,
-        'platform': Platform.operatingSystem,
       };
 
-      if (Platform.isAndroid) {
-        final AndroidDeviceInfo androidInfo = await _deviceInfo.androidInfo;
+      if (kIsWeb) {
+        info['platform'] = 'web';
+        final WebBrowserInfo webInfo = await _deviceInfo.webBrowserInfo;
         info.addAll({
-          'device': androidInfo.device,
-          'manufacturer': androidInfo.manufacturer,
-          'model': androidInfo.model,
-          'android_version': androidInfo.version.release,
-          'sdk_int': androidInfo.version.sdkInt,
+          'browser': webInfo.browserName.name,
+          'userAgent': webInfo.userAgent,
+          'vendor': webInfo.vendor,
+          'platform': webInfo.platform,
         });
-      } else if (Platform.isIOS) {
-        final IosDeviceInfo iosInfo = await _deviceInfo.iosInfo;
-        info.addAll({
-          'device': iosInfo.name,
-          'model': iosInfo.model,
-          'system_name': iosInfo.systemName,
-          'system_version': iosInfo.systemVersion,
-          'utsname': iosInfo.utsname.machine,
-        });
+      } else {
+        info['platform'] = Platform.operatingSystem;
+
+        if (Platform.isAndroid) {
+          final AndroidDeviceInfo androidInfo = await _deviceInfo.androidInfo;
+          info.addAll({
+            'device': androidInfo.device,
+            'manufacturer': androidInfo.manufacturer,
+            'model': androidInfo.model,
+            'android_version': androidInfo.version.release,
+            'sdk_int': androidInfo.version.sdkInt,
+          });
+        } else if (Platform.isIOS) {
+          final IosDeviceInfo iosInfo = await _deviceInfo.iosInfo;
+          info.addAll({
+            'device': iosInfo.name,
+            'model': iosInfo.model,
+            'system_name': iosInfo.systemName,
+            'system_version': iosInfo.systemVersion,
+            'utsname': iosInfo.utsname.machine,
+          });
+        }
       }
       return info;
     } catch (e) {
