@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,7 +15,7 @@ class BottomPlayerWidget extends StatelessWidget {
       builder: (context, state) {
         return SafeArea(
           top: false,
-          bottom: Platform.isIOS == false,
+          bottom: defaultTargetPlatform != TargetPlatform.iOS,
           child: Container(
             margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
             decoration: BoxDecoration(
