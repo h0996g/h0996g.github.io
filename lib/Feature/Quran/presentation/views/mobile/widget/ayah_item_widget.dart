@@ -1,43 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Feature/Quran/presentation/views/tafseer_bottom_sheet.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../Core/theme/app_colors.dart';
-import '../../data/models/surah_model.dart';
-import '../../data/models/ayah_model.dart';
-import '../manager/audio_cubit/audio_cubit.dart';
-import '../manager/audio_cubit/audio_state.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noor/Core/theme/app_colors.dart';
+import 'package:noor/Feature/Quran/data/models/surah_model.dart';
+import 'package:noor/Feature/Quran/data/models/ayah_model.dart';
+import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
+import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_state.dart';
+import 'package:noor/Feature/Quran/presentation/views/mobile/tafseer_bottom_sheet.dart';
 
-import 'package:noor/Core/widgets/custom_app_bar.dart';
-
-class SurahDetailPage extends StatelessWidget {
-  final SurahModel surah;
-
-  const SurahDetailPage({super.key, required this.surah});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: surah.name),
-      body: Container(
-        padding: EdgeInsets.all(16.w),
-        child: ListView.builder(
-          itemCount: surah.ayahs.length,
-          itemBuilder: (context, index) {
-            final AyahModel ayah = surah.ayahs[index];
-            return _AyahItem(surah: surah, ayah: ayah);
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class _AyahItem extends StatelessWidget {
+class AyahItemWidget extends StatelessWidget {
   final SurahModel surah;
   final AyahModel ayah;
 
-  const _AyahItem({required this.surah, required this.ayah});
+  const AyahItemWidget({super.key, required this.surah, required this.ayah});
 
   @override
   Widget build(BuildContext context) {

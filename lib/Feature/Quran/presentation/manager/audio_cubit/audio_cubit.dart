@@ -33,6 +33,7 @@ class AudioCubit extends Cubit<AudioState> {
         if (_audioPlayer.playing) {
           await _audioPlayer.stop();
         }
+        print(url);
         await _audioPlayer.setUrl(url);
         emit(
           state.copyWith(status: AudioStatus.playing, currentAyahId: ayahId),

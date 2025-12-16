@@ -10,7 +10,7 @@ import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.
 import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
 
 import '../../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
-import '../../../../Quran/presentation/views/surah_list_page.dart';
+import '../../../../Quran/presentation/views/desktop/surah_list_page.dart';
 import '../../../../tasbih/presentation/views/tasbih_page.dart';
 import 'widgets/bottom_player_desktop.dart';
 import 'widgets/feature_card_desktop.dart';
