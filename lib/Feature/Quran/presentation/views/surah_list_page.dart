@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Feature/Quran/presentation/manager/audio_cubit.dart';
+import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
 import '../../../../Core/theme/app_colors.dart';
-import '../../presentation/manager/quran_cubit.dart';
-import '../../presentation/manager/quran_state.dart';
+import '../manager/quran_cubit/quran_cubit.dart';
+import '../manager/quran_cubit/quran_state.dart';
 import 'surah_detail_page.dart';
 
 import 'package:noor/Core/widgets/custom_app_bar.dart';

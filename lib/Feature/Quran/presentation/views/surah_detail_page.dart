@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../Core/theme/app_colors.dart';
 import '../../data/models/surah_model.dart';
 import '../../data/models/ayah_model.dart';
-import '../../presentation/manager/audio_cubit.dart';
-import '../../presentation/manager/audio_state.dart';
+import '../manager/audio_cubit/audio_cubit.dart';
+import '../manager/audio_cubit/audio_state.dart';
 
 import 'package:noor/Core/widgets/custom_app_bar.dart';
 

@@ -21,12 +21,12 @@ class BottomPlayerDesktop extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withValues(alpha: 0.1),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
               BoxShadow(
-                color: AppColors.primary.withOpacity(0.05),
+                color: AppColors.primary.withValues(alpha: 0.05),
                 blurRadius: 10,
                 offset: const Offset(0, 4),
               ),
@@ -45,7 +45,7 @@ class BottomPlayerDesktop extends StatelessWidget {
                         end: Alignment.bottomRight,
                         colors: [
                           Colors.white,
-                          AppColors.primary.withOpacity(0.03),
+                          AppColors.primary.withValues(alpha: 0.03),
                         ],
                       ),
                     ),
@@ -60,7 +60,7 @@ class BottomPlayerDesktop extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: AppColors.primary.withOpacity(0.1),
+                          color: AppColors.primary.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(16),
                         ),
                         child: const Icon(
@@ -164,7 +164,9 @@ class BottomPlayerDesktop extends StatelessWidget {
                                 color: AppColors.primary,
                                 boxShadow: [
                                   BoxShadow(
-                                    color: AppColors.primary.withOpacity(0.3),
+                                    color: AppColors.primary.withValues(
+                                      alpha: 0.3,
+                                    ),
                                     blurRadius: 12,
                                     offset: const Offset(0, 4),
                                   ),
@@ -219,7 +221,7 @@ class BottomPlayerDesktop extends StatelessWidget {
                                   data: SliderTheme.of(context).copyWith(
                                     activeTrackColor: AppColors.primary,
                                     inactiveTrackColor: AppColors.primary
-                                        .withOpacity(0.1),
+                                        .withValues(alpha: 0.1),
                                     thumbColor: AppColors.primary,
                                     trackShape:
                                         const RoundedRectSliderTrackShape(),
@@ -253,7 +255,9 @@ class BottomPlayerDesktop extends StatelessWidget {
                                       horizontal: 0,
                                     ),
                                     decoration: BoxDecoration(
-                                      color: AppColors.primary.withOpacity(0.1),
+                                      color: AppColors.primary.withValues(
+                                        alpha: 0.1,
+                                      ),
                                       borderRadius: BorderRadius.circular(2),
                                     ),
                                   ),

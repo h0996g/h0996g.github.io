@@ -13,13 +13,16 @@ class HomeAppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       elevation: 4,
       toolbarHeight: 80,
-      shadowColor: Colors.black.withOpacity(0.1),
+      shadowColor: Colors.black.withValues(alpha: 0.1),
       flexibleSpace: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [AppColors.primary, AppColors.primary.withOpacity(0.8)],
+            colors: [
+              AppColors.primary,
+              AppColors.primary.withValues(alpha: 0.8),
+            ],
           ),
         ),
       ),
@@ -54,7 +57,7 @@ class HomeAppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                     child: Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Icon(

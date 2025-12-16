@@ -5,7 +5,7 @@ import 'package:noor/Core/theme/app_colors.dart';
 import '../../presentation/manager/adkar_cubit.dart';
 import '../../presentation/manager/adkar_state.dart';
 import '../../data/models/adkar_detail_model.dart';
-import '../../../Home/presentation/views/widgets/bottom_player_widget.dart';
+import '../../../Home/presentation/views/mobile/widgets/bottom_player_widget.dart';
 
 import 'package:noor/Core/widgets/custom_app_bar.dart';
 

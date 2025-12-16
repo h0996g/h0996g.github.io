@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../data/repo/quran_repo.dart';
+import '../../../data/repo/quran_repo.dart';
 import 'quran_state.dart';
 
 class QuranCubit extends Cubit<QuranState> {

@@ -41,12 +41,12 @@ class _FeatureCardDesktopState extends State<FeatureCardDesktop> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [widget.color, widget.color.withOpacity(0.8)],
+              colors: [widget.color, widget.color.withValues(alpha: 0.8)],
             ),
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: widget.color.withOpacity(0.3),
+                color: widget.color.withValues(alpha: 0.3),
                 blurRadius: _isHovered ? 20 : 10,
                 offset: _isHovered ? const Offset(0, 10) : const Offset(0, 5),
               ),
@@ -63,12 +63,12 @@ class _FeatureCardDesktopState extends State<FeatureCardDesktop> {
                         widget.imagePath!,
                         width: 140,
                         height: 140,
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withValues(alpha: 0.1),
                       )
                     : Icon(
                         widget.icon,
                         size: 140,
-                        color: Colors.white.withOpacity(0.1),
+                        color: Colors.white.withValues(alpha: 0.1),
                       ),
               ),
 
@@ -83,7 +83,7 @@ class _FeatureCardDesktopState extends State<FeatureCardDesktop> {
                     Container(
                       padding: const EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.2),
+                        color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(16),
                       ),
                       child: widget.imagePath != null

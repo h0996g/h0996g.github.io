@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../data/models/surah_model.dart';
+import '../../../data/models/surah_model.dart';
 
 enum QuranStatus { initial, loading, success, failure }
 

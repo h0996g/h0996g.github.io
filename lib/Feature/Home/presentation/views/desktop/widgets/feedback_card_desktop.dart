@@ -29,12 +29,12 @@ class _FeedbackCardDesktopState extends State<FeedbackCardDesktop> {
             color: Colors.white,
             borderRadius: BorderRadius.circular(24),
             border: Border.all(
-              color: AppColors.third.withOpacity(0.3),
+              color: AppColors.third.withValues(alpha: 0.3),
               width: 2,
             ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.05),
+                color: Colors.black.withValues(alpha: 0.05),
                 blurRadius: _isHovered ? 15 : 8,
                 offset: _isHovered ? const Offset(0, 8) : const Offset(0, 4),
               ),
@@ -47,7 +47,7 @@ class _FeedbackCardDesktopState extends State<FeedbackCardDesktop> {
                 Container(
                   padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
-                    color: AppColors.third.withOpacity(0.1),
+                    color: AppColors.third.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Icon(

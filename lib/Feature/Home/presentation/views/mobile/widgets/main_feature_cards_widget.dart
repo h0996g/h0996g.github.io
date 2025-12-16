@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
 import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
 import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
-import 'package:noor/Feature/Quran/presentation/manager/quran_cubit.dart';
-import '../../../../../../Core/theme/app_colors.dart';
-import '../../../../../../Core/const/app_images.dart';
+import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
+import '../../../../../../../Core/theme/app_colors.dart';
+import '../../../../../../../Core/const/app_images.dart';
 import 'feature_card_widget.dart';
-import '../../../../Quran/presentation/views/surah_list_page.dart';
-import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
+import '../../../../../Quran/presentation/views/surah_list_page.dart';
+import '../../../../../Adkar/presentation/views/adkar_sections_page.dart';
 
 class MainFeatureCards extends StatelessWidget {
   const MainFeatureCards({super.key});

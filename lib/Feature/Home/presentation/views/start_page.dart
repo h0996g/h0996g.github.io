@@ -11,6 +11,7 @@ class StartPage extends StatelessWidget {
     return const ResponsiveWidget(
       mobile: StartPageMobile(),
       desktop: StartPageDesktop(),
+      tablet: StartPageDesktop(),
     );
   }
 }

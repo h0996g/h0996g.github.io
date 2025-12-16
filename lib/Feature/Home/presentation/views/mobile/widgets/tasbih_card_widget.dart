@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../Core/theme/app_colors.dart';
-import '../../../../../../Core/const/app_images.dart';
+import '../../../../../../../Core/theme/app_colors.dart';
 
-class NamesOfAllahCard extends StatelessWidget {
+class TasbihCard extends StatelessWidget {
   final VoidCallback onTap;
 
-  const NamesOfAllahCard({super.key, required this.onTap});
+  const TasbihCard({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,8 @@ class NamesOfAllahCard extends StatelessWidget {
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                AppColors.secondary,
-                AppColors.secondary.withValues(alpha: 0.7),
+                AppColors.primary,
+                AppColors.primary.withValues(alpha: 0.7),
               ],
             ),
             borderRadius: BorderRadius.circular(20.r),
@@ -37,13 +36,12 @@ class NamesOfAllahCard extends StatelessWidget {
             children: [
               // Decorative Pattern
               Positioned(
-                right: -30.w,
-                top: -30.h,
-                child: Image.asset(
-                  AppImages.namesOfAllah,
-                  height: 150.sp,
-                  width: 150.sp,
-                  // color: Colors.white.withValues(alpha: 0.9),
+                left: -30.w,
+                bottom: -30.h,
+                child: Icon(
+                  Icons.touch_app_rounded,
+                  size: 150.sp,
+                  color: Colors.white.withValues(alpha: 0.1),
                 ),
               ),
 
@@ -58,11 +56,10 @@ class NamesOfAllahCard extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(16.r),
                       ),
-                      child: Image.asset(
-                        AppImages.namesOfAllah,
-                        // color: Colors.white,
-                        height: 40.sp,
-                        width: 40.sp,
+                      child: Icon(
+                        Icons.touch_app_rounded,
+                        color: Colors.white,
+                        size: 40.sp,
                       ),
                     ),
                     SizedBox(width: 20.w),
@@ -72,7 +69,7 @@ class NamesOfAllahCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'أسماء الله الحسنى',
+                            'التسبيح',
                             style: TextStyle(
                               fontSize: 22.sp,
                               fontWeight: FontWeight.bold,

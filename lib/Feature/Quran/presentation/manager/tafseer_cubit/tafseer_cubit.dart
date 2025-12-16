@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Feature/Quran/presentation/manager/tafseer_state.dart';
-import '../../data/repo/quran_repo.dart';
+import 'package:noor/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_state.dart';
+import '../../../data/repo/quran_repo.dart';
 
 class TafseerCubit extends Cubit<TafseerState> {
   final QuranRepository quranRepository;
