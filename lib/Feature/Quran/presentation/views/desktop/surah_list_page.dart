@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Core/widgets/custom_app_bar.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
@@ -14,6 +13,7 @@ class SurahListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: 'السور'),
+      backgroundColor: Colors.grey[50],
       body: BlocBuilder<QuranCubit, QuranState>(
         builder: (context, state) {
           if (state.status == QuranStatus.loading) {
@@ -21,26 +21,48 @@ class SurahListPage extends StatelessWidget {
               child: CircularProgressIndicator(color: AppColors.primary),
             );
           } else if (state.status == QuranStatus.failure) {
-            return Center(child: Text('Error: ${state.errorMessage}'));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.error_outline_rounded,
+                    size: 64,
+                    color: Colors.red[300],
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'حدث خطأ',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    state.errorMessage ?? 'خطأ غير معروف',
+                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+            );
           } else if (state.status == QuranStatus.success) {
             return LayoutBuilder(
               builder: (context, constraints) {
                 // Calculate number of columns based on available width
-                // Target card width roughly 250px
-                final int crossAxisCount = (constraints.maxWidth / 250)
+                // Target card width roughly 280px for better spacing
+                final int crossAxisCount = (constraints.maxWidth / 280)
                     .floor()
-                    .clamp(2, 6);
+                    .clamp(2, 5);
 
                 return GridView.builder(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 24.w,
-                    vertical: 24.h,
-                  ),
+                  padding: const EdgeInsets.all(32),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: crossAxisCount,
-                    childAspectRatio: 1.1,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
+                    childAspectRatio: 1.15,
+                    crossAxisSpacing: 24,
+                    mainAxisSpacing: 24,
                   ),
                   itemCount: state.surahs.length,
                   itemBuilder: (context, index) {
