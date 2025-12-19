@@ -61,17 +61,6 @@ class _AdkarItemWidgetState extends State<AdkarItemWidget> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (widget.detail.reference.isNotEmpty) ...[
-              Text(
-                widget.detail.reference,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: AppColors.secondary,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8.h),
-            ],
             Text(
               widget.detail.content,
               textAlign: TextAlign.justify,
@@ -82,17 +71,7 @@ class _AdkarItemWidgetState extends State<AdkarItemWidget> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            if (widget.detail.description.isNotEmpty) ...[
-              SizedBox(height: 12.h),
-              Text(
-                widget.detail.description,
-                style: TextStyle(
-                  fontSize: 14.sp,
-                  color: Colors.grey[600],
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ],
+
             SizedBox(height: 16.h),
             Container(
               padding: EdgeInsets.symmetric(vertical: 8.h),

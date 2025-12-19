@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noor/Core/const/app_images.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Feature/Adkar/data/models/adkar_section_model.dart';
 import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
@@ -9,12 +10,30 @@ import '../adkar_details_page.dart';
 
 class AdkarSectionItemWidget extends StatelessWidget {
   final AdkarSectionModel section;
+  final int index;
 
-  const AdkarSectionItemWidget({super.key, required this.section});
+  const AdkarSectionItemWidget({
+    super.key,
+    required this.section,
+    required this.index,
+  });
+
+  // Map section index to appropriate image
+  String _getImageForSection(int index) {
+    final images = [
+      AdkarImages.sunrise, // Morning
+      AdkarImages.sleeping, // Evening
+      AdkarImages.sleep, // Sleep
+      AdkarImages.ablution, // Ablution
+      AdkarImages.islam, // Prayer
+      AdkarImages.nature, // General
+    ];
+    return images[index % images.length];
+  }
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.push(
           context,
@@ -31,45 +50,74 @@ class AdkarSectionItemWidget extends StatelessWidget {
         );
       },
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 20.w),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12.r),
+          borderRadius: BorderRadius.circular(20.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: AppColors.primary.withValues(alpha: 0.3),
+              blurRadius: 15,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
-        child: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(8.w),
-              decoration: BoxDecoration(
-                color: AppColors.secondary.withValues(alpha: 0.1),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.star_half_rounded,
-                color: AppColors.secondary,
-                size: 24.sp,
-              ),
-            ),
-            SizedBox(width: 16.w),
-            Expanded(
-              child: Text(
-                section.name,
-                style: TextStyle(
-                  fontSize: 18.sp,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20.r),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              // Background Image
+              Image.asset(_getImageForSection(index), fit: BoxFit.cover),
+              // Gradient Overlay
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppColors.primary.withValues(alpha: 0.4),
+                      AppColors.third.withValues(alpha: 0.6),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Icon(Icons.arrow_forward_ios, size: 16.sp, color: Colors.grey),
-          ],
+              // Content
+              Padding(
+                padding: EdgeInsets.all(12.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Section Name
+                    Text(
+                      section.name,
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        height: 1.3,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: 6.h),
+                    // Arrow Icon
+                    Container(
+                      padding: EdgeInsets.all(4.w),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.2),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        Icons.arrow_forward,
+                        color: Colors.white,
+                        size: 14.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

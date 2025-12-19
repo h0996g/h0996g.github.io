@@ -9,7 +9,7 @@ import '../../../../../../../Core/theme/app_colors.dart';
 import '../../../../../../../Core/const/app_images.dart';
 import 'feature_card_widget.dart';
 import '../../../../../Quran/presentation/views/mobile/surah_list_page.dart';
-import '../../../../../Adkar/presentation/views/mobile/adkar_sections_page.dart';
+import '../../../../../Adkar/presentation/views/adkar_sections_page.dart';
 
 class MainFeatureCards extends StatelessWidget {
   const MainFeatureCards({super.key});

@@ -7,7 +7,7 @@ import '../../../../Feedback/presentation/views/feedback_card_widget.dart';
 import 'widgets/bottom_player_widget.dart';
 import 'widgets/tasbih_card_widget.dart';
 import '../../../../tasbih/presentation/views/tasbih_page.dart';
-import '../../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
+import '../../../../NamesOfAllah/presentation/views/mobile/names_of_allah_page.dart';
 import '../../../../Feedback/presentation/views/widgets/feedback_bottom_sheet.dart';
 
 class StartPageMobile extends StatelessWidget {

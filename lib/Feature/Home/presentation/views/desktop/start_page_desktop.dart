@@ -5,11 +5,10 @@ import 'package:noor/Core/const/app_images.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
 import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
+import 'package:noor/Feature/NamesOfAllah/presentation/views/desktop/names_of_allah_desktop_page.dart';
 import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
-import '../../../../Adkar/presentation/views/mobile/adkar_sections_page.dart';
-
-import '../../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
+import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
 import '../../../../Quran/presentation/views/desktop/surah_list_page.dart';
 import '../../../../tasbih/presentation/views/tasbih_page.dart';
 import 'widgets/bottom_player_desktop.dart';
@@ -90,7 +89,8 @@ class StartPageDesktop extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const NamesOfAllahPage(),
+                              builder: (context) =>
+                                  const NamesOfAllahDesktopPage(),
                             ),
                           );
                         },
