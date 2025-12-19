@@ -7,7 +7,7 @@ import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
 import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
 import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
-import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
+import '../../../../Adkar/presentation/views/mobile/adkar_sections_page.dart';
 
 import '../../../../NamesOfAllah/presentation/views/names_of_allah_page.dart';
 import '../../../../Quran/presentation/views/desktop/surah_list_page.dart';
