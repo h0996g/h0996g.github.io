@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../Core/theme/app_colors.dart';
+import '../../../../../../../Core/theme/app_colors.dart';
 
 class TasbihCounterWidget extends StatefulWidget {
   final int count;

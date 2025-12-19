@@ -8,9 +8,9 @@ import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
 import 'package:noor/Feature/NamesOfAllah/presentation/views/desktop/names_of_allah_desktop_page.dart';
 import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
+import 'package:noor/Feature/tasbih/presentation/views/desktop/tasbih_desktop_page.dart';
 import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
 import '../../../../Quran/presentation/views/desktop/surah_list_page.dart';
-import '../../../../tasbih/presentation/views/tasbih_page.dart';
 import 'widgets/bottom_player_desktop.dart';
 import 'widgets/feature_card_desktop.dart';
 import 'widgets/feedback_card_desktop.dart';
@@ -113,7 +113,7 @@ class StartPageDesktop extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const TasbihPage(),
+                              builder: (context) => const TasbihDesktopPage(),
                             ),
                           );
                         },
