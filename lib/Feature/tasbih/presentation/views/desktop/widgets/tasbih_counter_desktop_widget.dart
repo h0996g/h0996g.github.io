@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../../../Core/theme/app_colors.dart';
 
 class TasbihCounterDesktopWidget extends StatefulWidget {
@@ -60,8 +61,8 @@ class _TasbihCounterDesktopWidgetState extends State<TasbihCounterDesktopWidget>
           scale: _scaleAnimation,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            width: 300,
-            height: 300,
+            width: 300.w,
+            height: 325.h,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(

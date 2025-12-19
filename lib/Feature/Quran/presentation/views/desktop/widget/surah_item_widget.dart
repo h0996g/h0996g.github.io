@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../Core/routing/app_router.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Feature/Quran/data/models/surah_model.dart';
-import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
-import '../surah_detail_page.dart';
 
 class SurahItemWidget extends StatelessWidget {
   final SurahModel surah;
@@ -29,15 +28,7 @@ class SurahItemWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: InkWell(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BlocProvider(
-                  create: (context) => AudioCubit(),
-                  child: SurahDetailPage(surah: surah),
-                ),
-              ),
-            );
+            context.push(AppRouter.kQuranDetails, extra: surah);
           },
           borderRadius: BorderRadius.circular(16),
           child: Padding(

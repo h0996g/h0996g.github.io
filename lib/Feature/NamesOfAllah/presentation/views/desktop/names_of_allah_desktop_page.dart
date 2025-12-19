@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
 import 'package:noor/Feature/NamesOfAllah/data/models/name_of_allah_model.dart';
 import 'package:noor/Feature/NamesOfAllah/data/repo/names_of_allah_repo.dart';
 import 'package:noor/Feature/NamesOfAllah/presentation/manager/names_of_allah_cubit.dart';
@@ -24,7 +25,7 @@ class _NamesOfAllahDesktopPageState extends State<NamesOfAllahDesktopPage> {
       create: (context) =>
           NamesOfAllahCubit(NamesOfAllahRepository())..loadNames(),
       child: Scaffold(
-        appBar: const CustomAppBar(title: 'أسماء الله الحسنى'),
+        appBar: const CustomAppBarDesktop(title: 'أسماء الله الحسنى'),
         body: BlocBuilder<NamesOfAllahCubit, NamesOfAllahState>(
           builder: (context, state) {
             if (state.status == NamesOfAllahStatus.loading) {
@@ -185,7 +186,7 @@ class _NameDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.all(60),
+      padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
       child: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 700),
@@ -194,17 +195,13 @@ class _NameDetailView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Name with decorative circle
-              Container(
-                padding: const EdgeInsets.all(40),
-
-                child: Text(
-                  nameModel.name,
-                  style: const TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                    fontFamily: 'Amiri',
-                  ),
+              Text(
+                nameModel.name,
+                style: const TextStyle(
+                  fontSize: 48,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
+                  fontFamily: 'Amiri',
                 ),
               ),
 
@@ -223,7 +220,7 @@ class _NameDetailView extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 48),
+              SizedBox(height: 30.h),
 
               // Description
               Container(

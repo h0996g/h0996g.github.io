@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
 import 'package:noor/Feature/Quran/data/models/ayah_model.dart';
 import 'package:noor/Feature/Quran/data/models/surah_model.dart';
 import 'package:noor/Feature/Quran/presentation/views/mobile/widget/ayah_item_widget.dart';

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noor/Core/const/app_images.dart';
 import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
 import 'package:noor/Feature/Adkar/presentation/views/desktop/widgets/adkar_section_item_widget.dart';
 import '../../manager/adkar_cubit.dart';
 import '../../manager/adkar_state.dart';
@@ -13,7 +13,7 @@ class AdkarSectionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'الأذكار'),
+      appBar: const CustomAppBarDesktop(title: 'الأذكار'),
       body: BlocBuilder<AdkarCubit, AdkarState>(
         builder: (context, state) {
           if (state.status == AdkarStatus.loading) {
@@ -48,7 +48,7 @@ class AdkarSectionsPage extends StatelessWidget {
                       children: [
                         // Header
                         Padding(
-                          padding: const EdgeInsets.all(40),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -68,6 +68,7 @@ class AdkarSectionsPage extends StatelessWidget {
                                   color: Colors.grey[600],
                                 ),
                               ),
+                              SizedBox(height: 20),
                             ],
                           ),
                         ),

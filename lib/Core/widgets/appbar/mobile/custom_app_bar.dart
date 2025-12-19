@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       color: Colors.white,
       fontWeight: FontWeight.bold,
       fontFamily: 'Amiri',
-      fontSize: DeviceTypeQuery.isDesktop(context) ? 22 : 16.sp,
+      fontSize: DeviceTypeQuery.isDesktop(context) ? 22 : 20.sp,
     );
 
     return AppBar(
@@ -41,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(
               Icons.text_fields_rounded,
               color: Colors.white,
-              size: DeviceTypeQuery.isDesktop(context) ? 24 : 16.sp,
+              size: DeviceTypeQuery.isDesktop(context) ? 24 : 20.sp,
             ),
             tooltip: 'تغيير حجم النص',
           ),

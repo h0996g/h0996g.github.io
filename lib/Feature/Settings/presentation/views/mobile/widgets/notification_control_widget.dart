@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Core/helper/overlay_notification_helper.dart';
-import '../../manager/settings_cubit.dart';
+import '../../../manager/settings_cubit.dart';
 
 class NotificationControlWidget extends StatelessWidget {
   const NotificationControlWidget({super.key});

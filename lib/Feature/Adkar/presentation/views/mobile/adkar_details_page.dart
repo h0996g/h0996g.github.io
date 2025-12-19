@@ -6,7 +6,7 @@ import 'package:noor/Feature/Adkar/presentation/views/mobile/widgets/adkar_compl
 import 'package:noor/Feature/Adkar/presentation/views/mobile/widgets/adkar_item_widget.dart';
 import '../../manager/adkar_cubit.dart';
 import '../../manager/adkar_state.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class AdkarDetailsPage extends StatefulWidget {
   final int sectionId;

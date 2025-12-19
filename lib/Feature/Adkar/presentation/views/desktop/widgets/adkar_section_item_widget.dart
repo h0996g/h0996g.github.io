@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../Core/routing/app_router.dart';
 import 'package:noor/Core/const/app_images.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Feature/Adkar/data/models/adkar_section_model.dart';
-import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
-import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
-import '../adkar_details_page.dart';
 
 class AdkarSectionItemWidget extends StatefulWidget {
   final AdkarSectionModel section;
@@ -44,19 +42,12 @@ class _AdkarSectionItemWidgetState extends State<AdkarSectionItemWidget> {
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => BlocProvider(
-                create: (context) =>
-                    AdkarCubit(AdkarRepository())
-                      ..loadSectionDetails(widget.section.id),
-                child: AdkarDetailsPage(
-                  sectionId: widget.section.id,
-                  sectionName: widget.section.name,
-                ),
-              ),
-            ),
+          context.push(
+            AppRouter.kAdkarDetails,
+            extra: {
+              'sectionId': widget.section.id,
+              'sectionName': widget.section.name,
+            },
           );
         },
         child: AnimatedContainer(

@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../Core/routing/app_router.dart';
 import 'package:noor/Core/const/app_images.dart';
 import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
-import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
-import 'package:noor/Feature/NamesOfAllah/presentation/views/desktop/names_of_allah_desktop_page.dart';
-import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
-import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
-import 'package:noor/Feature/tasbih/presentation/views/desktop/tasbih_desktop_page.dart';
-import '../../../../Adkar/presentation/views/adkar_sections_page.dart';
-import '../../../../Quran/presentation/views/desktop/surah_list_page.dart';
 import 'widgets/bottom_player_desktop.dart';
 import 'widgets/feature_card_desktop.dart';
 import 'widgets/feedback_card_desktop.dart';
 import 'package:noor/Feature/Feedback/presentation/views/desktop/widgets/feedback_dialog_desktop.dart';
-import 'widgets/home_app_bar_desktop.dart';
+import '../../../../../Core/widgets/appbar/desktop/home_app_bar_desktop.dart';
 
 class StartPageDesktop extends StatelessWidget {
   const StartPageDesktop({super.key});
@@ -44,17 +37,7 @@ class StartPageDesktop extends StatelessWidget {
                         imagePath: AppImages.quran,
                         color: AppColors.primary,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (context) =>
-                                    QuranCubit(QuranRepository())
-                                      ..loadQuranData(),
-                                child: const SurahListPage(),
-                              ),
-                            ),
-                          );
+                          context.push(AppRouter.kQuran);
                         },
                       ),
                     ),
@@ -65,17 +48,7 @@ class StartPageDesktop extends StatelessWidget {
                         imagePath: AppImages.openHands,
                         color: AppColors.third,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => BlocProvider(
-                                create: (context) =>
-                                    AdkarCubit(AdkarRepository())
-                                      ..loadSections(),
-                                child: const AdkarSectionsPage(),
-                              ),
-                            ),
-                          );
+                          context.push(AppRouter.kAdkar);
                         },
                       ),
                     ),
@@ -86,13 +59,7 @@ class StartPageDesktop extends StatelessWidget {
                         imagePath: AppImages.namesOfAllah,
                         color: AppColors.secondary,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  const NamesOfAllahDesktopPage(),
-                            ),
-                          );
+                          context.push(AppRouter.kNamesOfAllah);
                         },
                       ),
                     ),
@@ -110,12 +77,7 @@ class StartPageDesktop extends StatelessWidget {
                         icon: Icons.touch_app_rounded,
                         color: AppColors.primary,
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const TasbihDesktopPage(),
-                            ),
-                          );
+                          context.push(AppRouter.kTasbih);
                         },
                       ),
                     ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
 import 'package:noor/Feature/Adkar/presentation/views/desktop/widgets/adkar_completion_desktop_widget.dart';
 import 'package:noor/Feature/Adkar/presentation/views/desktop/widgets/adkar_item_desktop_widget.dart';
 import '../../manager/adkar_cubit.dart';
@@ -72,7 +72,7 @@ class _AdkarDetailsPageState extends State<AdkarDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: widget.sectionName),
+      appBar: CustomAppBarDesktop(title: widget.sectionName),
       body: BlocBuilder<AdkarCubit, AdkarState>(
         builder: (context, state) {
           if (state.status == AdkarStatus.loading) {

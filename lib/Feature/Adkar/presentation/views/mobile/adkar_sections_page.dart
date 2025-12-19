@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:noor/Core/const/app_images.dart';
 import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Feature/Adkar/presentation/views/mobile/widgets/adkar_section_item_widget.dart';
@@ -27,7 +28,6 @@ class AdkarSectionsPage extends StatelessWidget {
                 // Compact Header with Cover Image
                 SizedBox(
                   height: 250.h,
-
                   width: double.infinity,
                   child: Stack(
                     fit: StackFit.expand,
@@ -41,8 +41,8 @@ class AdkarSectionsPage extends StatelessWidget {
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             colors: [
-                              Colors.black.withOpacity(0.3),
-                              Colors.black.withOpacity(0.6),
+                              Colors.black.withValues(alpha: 0.3),
+                              Colors.black.withValues(alpha: 0.6),
                             ],
                           ),
                         ),
@@ -50,7 +50,6 @@ class AdkarSectionsPage extends StatelessWidget {
                       // Title and Back Button
                       Positioned(
                         top: 16.h,
-
                         child: Align(
                           alignment: Alignment.topRight,
                           child: Padding(
@@ -61,7 +60,7 @@ class AdkarSectionsPage extends StatelessWidget {
                                 color: Colors.white,
                                 size: 24.sp,
                               ),
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () => context.pop(),
                             ),
                           ),
                         ),

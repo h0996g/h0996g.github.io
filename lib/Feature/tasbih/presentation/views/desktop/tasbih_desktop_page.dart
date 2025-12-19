@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../Core/theme/app_colors.dart';
-import '../../../../../Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
 import '../../manager/tasbih_cubit.dart';
 import '../../manager/tasbih_state.dart';
 import 'widgets/tasbih_counter_desktop_widget.dart';
@@ -18,7 +18,7 @@ class TasbihDesktopPage extends StatelessWidget {
       create: (context) => TasbihCubit(),
       child: Scaffold(
         backgroundColor: Colors.grey[50],
-        appBar: const CustomAppBar(title: 'التسبيح'),
+        appBar: const CustomAppBarDesktop(title: 'التسبيح'),
         body: BlocBuilder<TasbihCubit, TasbihState>(
           builder: (context, state) {
             final cubit = context.read<TasbihCubit>();

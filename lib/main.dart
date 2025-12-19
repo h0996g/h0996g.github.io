@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:noor/Core/routing/app_router.dart';
+import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Core/utils/app_utils.dart';
 import 'package:noor/Feature/Home/data/repo/home_repo.dart';
 import 'package:noor/Feature/Home/presentation/manager/bottom_player_cubit.dart';
-import 'package:noor/Feature/Home/presentation/views/start_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
 
@@ -35,10 +36,28 @@ class MyApp extends StatelessWidget {
           ],
           child: BlocBuilder<SettingsCubit, SettingsState>(
             builder: (context, state) {
-              return MaterialApp(
+              return MaterialApp.router(
                 title: 'Noor',
                 debugShowCheckedModeBanner: false,
-                theme: ThemeData(useMaterial3: true),
+                routerConfig: AppRouter.router,
+                theme: ThemeData(
+                  useMaterial3: true,
+                  sliderTheme: SliderThemeData(
+                    activeTrackColor: AppColors.primary,
+                    inactiveTrackColor: AppColors.primary.withValues(
+                      alpha: 0.2,
+                    ),
+                    thumbColor: AppColors.primary,
+                    overlayColor: AppColors.primary.withValues(alpha: 0.2),
+                    trackHeight: 6.0,
+                    thumbShape: const RoundSliderThumbShape(
+                      enabledThumbRadius: 12.0,
+                    ),
+                    valueIndicatorStrokeColor: AppColors.primary,
+                    valueIndicatorColor: AppColors.primary,
+                    overlayShape: const RoundSliderOverlayShape(),
+                  ),
+                ),
                 locale: const Locale('ar', 'SA'),
                 supportedLocales: const [
                   Locale('ar', 'SA'),
@@ -57,7 +76,6 @@ class MyApp extends StatelessWidget {
                     child: child!,
                   );
                 },
-                home: const StartPage(),
               );
             },
           ),

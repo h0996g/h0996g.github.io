@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../../../../Core/theme/app_colors.dart';
-import '../../../../../Settings/presentation/views/settings_page.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../Core/routing/app_router.dart';
+import '../../../../../Core/theme/app_colors.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -43,10 +44,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         GestureDetector(
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const SettingsPage()),
-            );
+            context.push(AppRouter.kSettings);
           },
           child: Container(
             margin: EdgeInsets.only(right: 12.w),

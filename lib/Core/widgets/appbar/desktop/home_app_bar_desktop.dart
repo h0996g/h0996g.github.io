@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../Core/routing/app_router.dart';
 import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Settings/presentation/views/settings_page.dart';
 
 class HomeAppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBarDesktop({super.key});
 
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => Size.fromHeight(70.h);
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +49,7 @@ class HomeAppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SettingsPage(),
-                        ),
-                      );
+                      context.push(AppRouter.kSettings);
                     },
                     child: Container(
                       padding: const EdgeInsets.all(10),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
 import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_state.dart';
 import 'package:noor/Feature/Quran/presentation/views/desktop/widget/surah_item_widget.dart';
@@ -12,7 +12,7 @@ class SurahListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'السور'),
+      appBar: const CustomAppBarDesktop(title: 'السور'),
       backgroundColor: Colors.grey[50],
       body: BlocBuilder<QuranCubit, QuranState>(
         builder: (context, state) {

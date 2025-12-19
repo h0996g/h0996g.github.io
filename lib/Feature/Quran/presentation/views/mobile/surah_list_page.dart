@@ -5,7 +5,7 @@ import 'package:noor/Feature/Quran/presentation/views/mobile/widget/surah_item_w
 import '../../../../../Core/theme/app_colors.dart';
 import '../../manager/quran_cubit/quran_cubit.dart';
 import '../../manager/quran_cubit/quran_state.dart';
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class SurahListPage extends StatelessWidget {
   const SurahListPage({super.key});

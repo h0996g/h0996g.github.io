@@ -8,7 +8,7 @@ import '../../manager/names_of_allah_state.dart';
 import '../../../data/models/name_of_allah_model.dart';
 import 'name_detail_dialog.dart';
 
-import 'package:noor/Core/widgets/custom_app_bar.dart';
+import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class NamesOfAllahPage extends StatelessWidget {
   const NamesOfAllahPage({super.key});
