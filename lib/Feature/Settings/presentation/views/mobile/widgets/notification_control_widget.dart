@@ -211,7 +211,7 @@ class NotificationControlWidget extends StatelessWidget {
           ),
           SizedBox(height: 12.h),
           Text(
-            'سيتم إرسال إشعار بذكر عشوائي حسب الفترة المحددة',
+            'سيتم إرسال إشعار بذكر حسب الفترة المحددة',
             style: TextStyle(
               fontSize: 12.sp,
               color: Colors.grey[600],

@@ -79,7 +79,7 @@ class BottomPlayerDesktop extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             const Text(
-                              'آية عشوائية',
+                              'آية',
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,

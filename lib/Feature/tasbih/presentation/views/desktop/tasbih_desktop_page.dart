@@ -29,51 +29,66 @@ class TasbihDesktopPage extends StatelessWidget {
                   flex: 2,
                   child: Container(
                     color: Colors.white,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Counter Button
-                        TasbihCounterDesktopWidget(
-                          count: state.count,
-                          target: state.target,
-                          onIncrement: cubit.increment,
-                        ),
-
-                        const SizedBox(height: 40),
-
-                        // Reset Button
-                        MouseRegion(
-                          cursor: SystemMouseCursors.click,
-                          child: TextButton.icon(
-                            onPressed: cubit.reset,
-                            icon: const Icon(
-                              Icons.refresh,
-                              color: AppColors.primary,
-                              size: 20,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        return SingleChildScrollView(
+                          child: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minHeight: constraints.maxHeight,
                             ),
-                            label: const Text(
-                              'إعادة تعيين',
-                              style: TextStyle(
-                                color: AppColors.primary,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            style: TextButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 28,
-                                vertical: 14,
-                              ),
-                              backgroundColor: AppColors.primary.withValues(
-                                alpha: 0.1,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 40),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  // Counter Button
+                                  TasbihCounterWidget(
+                                    count: state.count,
+                                    target: state.target,
+                                    onIncrement: cubit.increment,
+                                  ),
+
+                                  const SizedBox(height: 40),
+
+                                  // Reset Button
+                                  MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: TextButton.icon(
+                                      onPressed: cubit.reset,
+                                      icon: const Icon(
+                                        Icons.refresh,
+                                        color: AppColors.primary,
+                                        size: 20,
+                                      ),
+                                      label: const Text(
+                                        'إعادة تعيين',
+                                        style: TextStyle(
+                                          color: AppColors.primary,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      style: TextButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 28,
+                                          vertical: 14,
+                                        ),
+                                        backgroundColor: AppColors.primary
+                                            .withValues(alpha: 0.1),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            30,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -81,92 +96,111 @@ class TasbihDesktopPage extends StatelessWidget {
                 // Right Side - Controls (60%)
                 Expanded(
                   flex: 3,
-                  child: Container(
-                    padding: const EdgeInsets.all(60),
-                    child: Center(
-                      child: Container(
-                        constraints: const BoxConstraints(maxWidth: 600),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            // Title
-                            const Text(
-                              'اختر الذكر والهدف',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.primary,
-                                fontFamily: 'Amiri',
-                              ),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return SingleChildScrollView(
+                        child: ConstrainedBox(
+                          constraints: BoxConstraints(
+                            minHeight: constraints.maxHeight,
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 40,
+                              horizontal: 40,
                             ),
+                            child: Center(
+                              child: Container(
+                                constraints: const BoxConstraints(
+                                  maxWidth: 600,
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    // Title
+                                    const Text(
+                                      'اختر الذكر والهدف',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 28,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.primary,
+                                        fontFamily: 'Amiri',
+                                      ),
+                                    ),
 
-                            const SizedBox(height: 40),
+                                    const SizedBox(height: 40),
 
-                            // Target Selector
-                            Center(
-                              child: TasbihTargetSelectorDesktopWidget(
-                                selectedTarget: state.target,
-                                onTargetChanged: cubit.setTarget,
-                              ),
-                            ),
+                                    // Target Selector
+                                    Center(
+                                      child: TasbihTargetSelectorDesktopWidget(
+                                        selectedTarget: state.target,
+                                        onTargetChanged: cubit.setTarget,
+                                      ),
+                                    ),
 
-                            const SizedBox(height: 40),
+                                    const SizedBox(height: 40),
 
-                            // Section Label
-                            Text(
-                              'الأذكار المتاحة',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.grey[700],
-                              ),
-                            ),
+                                    // Section Label
+                                    Text(
+                                      'الأذكار المتاحة',
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.grey[700],
+                                      ),
+                                    ),
 
-                            const SizedBox(height: 20),
+                                    const SizedBox(height: 20),
 
-                            // Dhikr Selector
-                            Center(
-                              child: TasbihDhikrSelectorDesktopWidget(
-                                dhikrOptions: TasbihState.dhikrOptions,
-                                selectedIndex: state.selectedDhikrIndex,
-                                onDhikrChanged: cubit.changeDhikrIndex,
-                              ),
-                            ),
+                                    // Dhikr Selector
+                                    Center(
+                                      child: TasbihDhikrSelectorDesktopWidget(
+                                        dhikrOptions: TasbihState.dhikrOptions,
+                                        selectedIndex: state.selectedDhikrIndex,
+                                        onDhikrChanged: cubit.changeDhikrIndex,
+                                      ),
+                                    ),
 
-                            const SizedBox(height: 50),
+                                    const SizedBox(height: 50),
 
-                            // Divider
-                            Container(
-                              height: 2,
-                              margin: const EdgeInsets.symmetric(
-                                horizontal: 80,
-                              ),
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.transparent,
-                                    AppColors.primary.withValues(alpha: 0.3),
-                                    Colors.transparent,
+                                    // Divider
+                                    Container(
+                                      height: 2,
+                                      margin: const EdgeInsets.symmetric(
+                                        horizontal: 80,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Colors.transparent,
+                                            AppColors.primary.withValues(
+                                              alpha: 0.3,
+                                            ),
+                                            Colors.transparent,
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+
+                                    const SizedBox(height: 50),
+
+                                    // Current Dhikr Display
+                                    TasbihDhikrDisplayDesktopWidget(
+                                      currentDhikr: state.currentDhikr,
+                                      onNext: () => cubit.cycleDhikr(1),
+                                      onPrevious: () => cubit.cycleDhikr(-1),
+                                    ),
                                   ],
                                 ),
                               ),
                             ),
-
-                            const SizedBox(height: 50),
-
-                            // Current Dhikr Display
-                            TasbihDhikrDisplayDesktopWidget(
-                              currentDhikr: state.currentDhikr,
-                              onNext: () => cubit.cycleDhikr(1),
-                              onPrevious: () => cubit.cycleDhikr(-1),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
+                      );
+                    },
                   ),
                 ),
               ],
