@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:noor/Core/theme/app_colors.dart';
+import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
 import 'widgets/text_size_control_widget.dart';
 import 'widgets/notification_control_widget.dart';
 import 'widgets/overlay_customization_widget.dart';
@@ -12,12 +13,7 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[50],
-      appBar: AppBar(
-        title: const Text('الإعدادات'),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
+      appBar: const CustomAppBar(title: 'الإعدادات'),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
@@ -49,6 +45,7 @@ class SettingsPage extends StatelessWidget {
               const NotificationControlWidget(),
               SizedBox(height: 24.h),
               const OverlayCustomizationWidget(),
+              SizedBox(height: 30.h),
             ],
           ),
         ),

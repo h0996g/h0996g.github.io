@@ -56,14 +56,16 @@ class _FeatureCardDesktopState extends State<FeatureCardDesktop> {
             children: [
               // Decorative Background (Large & Faded)
               Positioned(
-                right: -20,
+                left: 0,
                 bottom: -20,
                 child: widget.imagePath != null
-                    ? Image.asset(
-                        widget.imagePath!,
-                        width: 140,
-                        height: 140,
-                        color: Colors.white.withValues(alpha: 0.1),
+                    ? Opacity(
+                        opacity: 0.2,
+                        child: Image.asset(
+                          widget.imagePath!,
+                          width: 140,
+                          height: 140,
+                        ),
                       )
                     : Icon(
                         widget.icon,
@@ -91,7 +93,7 @@ class _FeatureCardDesktopState extends State<FeatureCardDesktop> {
                               widget.imagePath!,
                               width: 32,
                               height: 32,
-                              color: Colors.white,
+                              // color: Colors.white,
                             )
                           : Icon(widget.icon, size: 32, color: Colors.white),
                     ),

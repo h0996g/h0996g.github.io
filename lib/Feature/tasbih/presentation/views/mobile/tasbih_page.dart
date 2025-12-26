@@ -56,7 +56,7 @@ class TasbihPage extends StatelessWidget {
                     onPressed: cubit.reset,
                     icon: Icon(Icons.refresh, color: AppColors.primary),
                     label: Text(
-                      'Reset',
+                      'إعادة',
                       style: TextStyle(
                         color: AppColors.primary,
                         fontSize: 16.sp,

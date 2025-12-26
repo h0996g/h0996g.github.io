@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:noor/Core/api/dio.dart';
+import 'package:noor/Core/helper/cache_helper.dart';
 import 'package:noor/Core/helper/environment.dart';
 import 'package:noor/Core/helper/observer.dart';
-import 'package:noor/Core/services/notification_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
@@ -15,8 +15,11 @@ class AppUtils {
     // Initialize timezone data
     tz.initializeTimeZones();
 
-    // Initialize notification service
-    await NotificationService().initialize();
+    // Initialize cache helper
+    await CacheHelper.init();
+
+    // Note: Notification service will be initialized only when user enables notifications
+    // This happens in the notification permission dialog
 
     DioHelper.init();
     Bloc.observer = MyBlocObserver();

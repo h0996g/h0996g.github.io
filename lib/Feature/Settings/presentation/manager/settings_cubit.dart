@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:noor/Core/helper/cache_helper.dart';
 import 'package:noor/Core/services/notification_service.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings_state.dart';
 
@@ -21,18 +21,23 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> _loadSettings() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-
-      final textScale = prefs.getDouble(_textScaleKey) ?? 1.0;
-      final interval = prefs.getInt(_notificationIntervalKey) ?? 0;
-      final typeIndex = prefs.getInt(_notificationTypeKey) ?? 0;
+      final textScale =
+          CacheHelper.getData(key: _textScaleKey) as double? ?? 1.0;
+      final interval =
+          CacheHelper.getData(key: _notificationIntervalKey) as int? ?? 0;
+      final typeIndex =
+          CacheHelper.getData(key: _notificationTypeKey) as int? ?? 0;
       final type = NotificationType.values[typeIndex];
-      final overlayTextSize = prefs.getDouble(_overlayTextSizeKey) ?? 18.0;
-      final overlayTextColor = prefs.getInt(_overlayTextColorKey) ?? 0xFF000000;
+      final overlayTextSize =
+          CacheHelper.getData(key: _overlayTextSizeKey) as double? ?? 18.0;
+      final overlayTextColor =
+          CacheHelper.getData(key: _overlayTextColorKey) as int? ?? 0xFF000000;
       final overlayBgColor =
-          prefs.getInt(_overlayBackgroundColorKey) ?? 0xFFFFFFFF;
+          CacheHelper.getData(key: _overlayBackgroundColorKey) as int? ??
+          0xFFFFFFFF;
       final overlayBgOpacity =
-          prefs.getDouble(_overlayBackgroundOpacityKey) ?? 1.0;
+          CacheHelper.getData(key: _overlayBackgroundOpacityKey) as double? ??
+          1.0;
 
       emit(
         SettingsState(
@@ -57,14 +62,15 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> updateTextScale(double scale) async {
     emit(state.copyWith(textScaleFactor: scale));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble(_textScaleKey, scale);
+    await CacheHelper.putCache(key: _textScaleKey, value: scale);
   }
 
   Future<void> updateNotificationInterval(int intervalMinutes) async {
     emit(state.copyWith(notificationIntervalMinutes: intervalMinutes));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_notificationIntervalKey, intervalMinutes);
+    await CacheHelper.putCache(
+      key: _notificationIntervalKey,
+      value: intervalMinutes,
+    );
 
     await _notificationService.scheduleAdkarNotifications(
       intervalMinutes,
@@ -74,8 +80,7 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> updateNotificationType(NotificationType type) async {
     emit(state.copyWith(notificationType: type));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_notificationTypeKey, type.index);
+    await CacheHelper.putCache(key: _notificationTypeKey, value: type.index);
 
     // Reschedule notifications with new type if interval is active
     if (state.notificationIntervalMinutes > 0) {
@@ -88,25 +93,24 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   Future<void> updateOverlayTextSize(double size) async {
     emit(state.copyWith(overlayTextSize: size));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble(_overlayTextSizeKey, size);
+    await CacheHelper.putCache(key: _overlayTextSizeKey, value: size);
   }
 
   Future<void> updateOverlayTextColor(int color) async {
     emit(state.copyWith(overlayTextColor: color));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_overlayTextColorKey, color);
+    await CacheHelper.putCache(key: _overlayTextColorKey, value: color);
   }
 
   Future<void> updateOverlayBackgroundColor(int color) async {
     emit(state.copyWith(overlayBackgroundColor: color));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setInt(_overlayBackgroundColorKey, color);
+    await CacheHelper.putCache(key: _overlayBackgroundColorKey, value: color);
   }
 
   Future<void> updateOverlayBackgroundOpacity(double opacity) async {
     emit(state.copyWith(overlayBackgroundOpacity: opacity));
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setDouble(_overlayBackgroundOpacityKey, opacity);
+    await CacheHelper.putCache(
+      key: _overlayBackgroundOpacityKey,
+      value: opacity,
+    );
   }
 }

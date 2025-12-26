@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:noor/Feature/Home/presentation/views/start_page.dart';
@@ -15,6 +16,8 @@ import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
 import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
 import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class AppRouter {
   static const String kHome = '/';
   static const String kAdkar = '/adkar';
@@ -26,6 +29,7 @@ class AppRouter {
   static const String kSettings = '/settings';
 
   static final router = GoRouter(
+    navigatorKey: navigatorKey,
     initialLocation: kHome,
     routes: [
       GoRoute(path: kHome, builder: (context, state) => const StartPage()),
