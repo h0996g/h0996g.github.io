@@ -26,11 +26,9 @@ class _AdkarSectionItemWidgetState extends State<AdkarSectionItemWidget> {
   String _getImageForSection(int index) {
     final images = [
       AdkarImages.sunrise,
-      AdkarImages.sleeping,
-      AdkarImages.sleep,
-      AdkarImages.ablution,
-      AdkarImages.islam,
       AdkarImages.nature,
+      AdkarImages.alarmClock,
+      AdkarImages.sleeping,
     ];
     return images[index % images.length];
   }

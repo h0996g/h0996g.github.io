@@ -19,12 +19,10 @@ class AdkarSectionItemWidget extends StatelessWidget {
   // Map section index to appropriate image
   String _getImageForSection(int index) {
     final images = [
-      AdkarImages.sunrise, // Morning
-      AdkarImages.sleeping, // Evening
-      AdkarImages.sleep, // Sleep
-      AdkarImages.ablution, // Ablution
-      AdkarImages.islam, // Prayer
-      AdkarImages.nature, // General
+      AdkarImages.sunrise,
+      AdkarImages.nature,
+      AdkarImages.alarmClock,
+      AdkarImages.sleeping,
     ];
     return images[index % images.length];
   }
