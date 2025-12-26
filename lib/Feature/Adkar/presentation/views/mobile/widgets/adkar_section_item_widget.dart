@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../Core/routing/app_router.dart';
 import 'package:noor/Core/const/app_images.dart';
-import 'package:noor/Core/theme/app_colors.dart';
 import 'package:noor/Feature/Adkar/data/models/adkar_section_model.dart';
 
 class AdkarSectionItemWidget extends StatelessWidget {
@@ -39,13 +38,7 @@ class AdkarSectionItemWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.r),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.primary.withValues(alpha: 0.3),
-              blurRadius: 15,
-              offset: const Offset(0, 8),
-            ),
-          ],
+          color: Colors.white,
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20.r),
@@ -53,16 +46,18 @@ class AdkarSectionItemWidget extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               // Background Image
-              Image.asset(_getImageForSection(index), fit: BoxFit.cover),
+              Image.asset(_getImageForSection(index), fit: BoxFit.contain),
               // Gradient Overlay
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                     colors: [
-                      AppColors.primary.withValues(alpha: 0.4),
-                      AppColors.third.withValues(alpha: 0.6),
+                      Colors.black.withValues(alpha: 0.2),
+
+                      Colors.black.withValues(alpha: 0.3),
+                      Colors.black.withValues(alpha: 0.6),
                     ],
                   ),
                 ),

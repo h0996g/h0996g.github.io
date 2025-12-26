@@ -3,12 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:noor/Core/helper/cache_helper.dart';
 import 'package:noor/Core/routing/app_router.dart';
 import 'package:noor/Core/widgets/notification_permission_dialog.dart';
+import 'package:noor/Core/widgets/app_update_dialog.dart';
+import 'package:noor/Core/services/version_check_service.dart';
 
 part 'main_state.dart';
 
 class MainCubit extends Cubit<MainState> {
   static const String _hasShownDialogKey = 'has_shown_notification_dialog';
   static const String _notificationsEnabledKey = 'notifications_enabled';
+
+  final VersionCheckService _versionCheckService = VersionCheckService();
 
   MainCubit() : super(const MainState()) {
     _loadState();
@@ -62,5 +66,31 @@ class MainCubit extends Cubit<MainState> {
         });
       });
     }
+  }
+
+  /// Check app version and show update dialog if needed
+  void checkAppVersionAndShowDialog() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 1000), () async {
+        final result = await _versionCheckService.checkForUpdate();
+
+        if (result.updateType != UpdateType.none &&
+            result.versionInfo != null) {
+          final context = navigatorKey.currentContext;
+          if (context != null && context.mounted) {
+            print('result.updateType${result.updateType}');
+            print('result.versionInfo${result.versionInfo}');
+            showDialog(
+              context: context,
+              barrierDismissible: result.updateType != UpdateType.force,
+              builder: (context) => AppUpdateDialog(
+                versionInfo: result.versionInfo!,
+                isForceUpdate: result.updateType == UpdateType.force,
+              ),
+            );
+          }
+        }
+      });
+    });
   }
 }

@@ -30,8 +30,9 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) =>
-                  MainCubit()..showNotificationDialogIfNeeded(),
+              create: (context) => MainCubit()
+                ..showNotificationDialogIfNeeded()
+                ..checkAppVersionAndShowDialog(),
             ),
             BlocProvider(
               create: (context) =>
