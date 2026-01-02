@@ -53,7 +53,9 @@ class StartPageMobile extends StatelessWidget {
                   context: context,
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
-                  builder: (context) => const FeedbackBottomSheet(),
+                  useSafeArea: true,
+                  builder: (context) =>
+                      SafeArea(child: const FeedbackBottomSheet()),
                 );
               },
             ),

@@ -343,7 +343,10 @@ class _NotificationPermissionDialogState
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: const Text('إلغاء'),
+                child: const Text(
+                  'إلغاء',
+                  style: TextStyle(color: AppColors.primary),
+                ),
               ),
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(true),
@@ -376,7 +379,7 @@ class _NotificationPermissionDialogState
                 content: const Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CircularProgressIndicator(),
+                    CircularProgressIndicator(color: AppColors.primary),
                     SizedBox(height: 16),
                     Text(
                       'يرجى تفعيل الإذن ثم الضغط على "تم"',
@@ -388,7 +391,10 @@ class _NotificationPermissionDialogState
                 actions: [
                   TextButton(
                     onPressed: () => Navigator.of(dialogContext).pop(false),
-                    child: const Text('إلغاء'),
+                    child: const Text(
+                      'إلغاء',
+                      style: TextStyle(color: AppColors.primary),
+                    ),
                   ),
                   ElevatedButton(
                     onPressed: () async {

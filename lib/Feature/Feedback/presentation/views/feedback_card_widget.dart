@@ -70,6 +70,7 @@ class FeedbackCard extends StatelessWidget {
                     ],
                   ),
                 ),
+
                 Icon(
                   Icons.arrow_forward_ios_rounded,
                   color: AppColors.third,

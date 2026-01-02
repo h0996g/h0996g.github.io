@@ -23,6 +23,7 @@ class _FeedbackBottomSheetState extends State<FeedbackBottomSheet> {
 
   Future<void> _pickMedia() async {
     showModalBottomSheet(
+      useSafeArea: true,
       context: context,
       backgroundColor: Colors.transparent,
       builder: (context) => Container(

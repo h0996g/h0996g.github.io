@@ -23,14 +23,16 @@ class SurahListPage extends StatelessWidget {
           } else if (state.status == QuranStatus.failure) {
             return Center(child: Text('Error: ${state.errorMessage}'));
           } else if (state.status == QuranStatus.success) {
-            return ListView.separated(
-              padding: EdgeInsets.all(16.w),
-              itemCount: state.surahs.length,
-              separatorBuilder: (context, index) => SizedBox(height: 12.h),
-              itemBuilder: (context, index) {
-                final surah = state.surahs[index];
-                return SurahItemWidget(surah: surah);
-              },
+            return SafeArea(
+              child: ListView.separated(
+                padding: EdgeInsets.all(16.w),
+                itemCount: state.surahs.length,
+                separatorBuilder: (context, index) => SizedBox(height: 12.h),
+                itemBuilder: (context, index) {
+                  final surah = state.surahs[index];
+                  return SurahItemWidget(surah: surah);
+                },
+              ),
             );
           }
           return const SizedBox.shrink();

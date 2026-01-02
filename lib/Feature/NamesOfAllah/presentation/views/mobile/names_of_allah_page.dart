@@ -29,19 +29,21 @@ class NamesOfAllahPage extends StatelessWidget {
             } else if (state.status == NamesOfAllahStatus.failure) {
               return Center(child: Text('Error: ${state.errorMessage}'));
             } else if (state.status == NamesOfAllahStatus.success) {
-              return GridView.builder(
-                padding: EdgeInsets.all(16.w),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 12.w,
-                  mainAxisSpacing: 12.h,
-                  childAspectRatio: 1.0,
+              return SafeArea(
+                child: GridView.builder(
+                  padding: EdgeInsets.all(16.w),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 12.w,
+                    mainAxisSpacing: 12.h,
+                    childAspectRatio: 1.0,
+                  ),
+                  itemCount: state.names.length,
+                  itemBuilder: (context, index) {
+                    final name = state.names[index];
+                    return _NameCard(nameModel: name);
+                  },
                 ),
-                itemCount: state.names.length,
-                itemBuilder: (context, index) {
-                  final name = state.names[index];
-                  return _NameCard(nameModel: name);
-                },
               );
             }
             return const SizedBox.shrink();

@@ -58,23 +58,25 @@ class _AdkarDetailsPageState extends State<AdkarDetailsPage> {
               return const AdkarCompletionWidget();
             }
 
-            return ListView.builder(
-              padding: EdgeInsets.all(16.w),
-              itemCount: state.details.length,
-              itemBuilder: (context, index) {
-                if (_completedIndices.contains(index)) {
-                  return const SizedBox.shrink();
-                }
-                return AdkarItemWidget(
-                  key: ValueKey(index),
-                  detail: state.details[index],
-                  onCompleted: () {
-                    setState(() {
-                      _completedIndices.add(index);
-                    });
-                  },
-                );
-              },
+            return SafeArea(
+              child: ListView.builder(
+                padding: EdgeInsets.all(16.w),
+                itemCount: state.details.length,
+                itemBuilder: (context, index) {
+                  if (_completedIndices.contains(index)) {
+                    return const SizedBox.shrink();
+                  }
+                  return AdkarItemWidget(
+                    key: ValueKey(index),
+                    detail: state.details[index],
+                    onCompleted: () {
+                      setState(() {
+                        _completedIndices.add(index);
+                      });
+                    },
+                  );
+                },
+              ),
             );
           }
           return const SizedBox.shrink();
