@@ -1,4 +1,4 @@
-package com.example.noor
+package com.ajr.app
 
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine

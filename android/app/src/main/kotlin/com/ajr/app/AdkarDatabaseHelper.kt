@@ -1,4 +1,4 @@
-package com.example.noor
+package com.ajr.app
 
 import kotlin.random.Random
 
