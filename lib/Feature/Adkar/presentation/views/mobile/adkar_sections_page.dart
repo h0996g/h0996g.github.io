@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:noor/Core/const/app_images.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Adkar/presentation/views/mobile/widgets/adkar_section_item_widget.dart';
+import 'package:Ajr/Core/const/app_images.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/mobile/widgets/adkar_section_item_widget.dart';
 import '../../manager/adkar_cubit.dart';
 import '../../manager/adkar_state.dart';
 

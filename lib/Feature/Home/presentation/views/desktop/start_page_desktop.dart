@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../Core/routing/app_router.dart';
-import 'package:noor/Core/const/app_images.dart';
-import 'package:noor/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/const/app_images.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
 import 'widgets/bottom_player_desktop.dart';
 import 'widgets/feature_card_desktop.dart';
 import 'widgets/feedback_card_desktop.dart';
-import 'package:noor/Feature/Feedback/presentation/views/desktop/widgets/feedback_dialog_desktop.dart';
+import 'package:Ajr/Feature/Feedback/presentation/views/desktop/widgets/feedback_dialog_desktop.dart';
 import '../../../../../Core/widgets/appbar/desktop/home_app_bar_desktop.dart';
 
 class StartPageDesktop extends StatelessWidget {

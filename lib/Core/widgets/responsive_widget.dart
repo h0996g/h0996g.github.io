@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Core/utils/device_type_query.dart';
+import 'package:Ajr/Core/utils/device_type_query.dart';
 
 class ResponsiveWidget extends StatelessWidget {
   final Widget mobile;

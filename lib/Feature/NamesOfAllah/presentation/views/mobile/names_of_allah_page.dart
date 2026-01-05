@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
 import '../../../data/repo/names_of_allah_repo.dart';
 import '../../manager/names_of_allah_cubit.dart';
 import '../../manager/names_of_allah_state.dart';
 import '../../../data/models/name_of_allah_model.dart';
 import 'name_detail_dialog.dart';
 
-import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
+import 'package:Ajr/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class NamesOfAllahPage extends StatelessWidget {
   const NamesOfAllahPage({super.key});

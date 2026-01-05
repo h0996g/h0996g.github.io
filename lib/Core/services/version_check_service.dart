@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:noor/Core/models/app_version_model.dart';
+import 'package:Ajr/Core/models/app_version_model.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 

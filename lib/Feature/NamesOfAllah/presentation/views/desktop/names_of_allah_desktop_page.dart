@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
-import 'package:noor/Feature/NamesOfAllah/data/models/name_of_allah_model.dart';
-import 'package:noor/Feature/NamesOfAllah/data/repo/names_of_allah_repo.dart';
-import 'package:noor/Feature/NamesOfAllah/presentation/manager/names_of_allah_cubit.dart';
-import 'package:noor/Feature/NamesOfAllah/presentation/manager/names_of_allah_state.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
+import 'package:Ajr/Feature/NamesOfAllah/data/models/name_of_allah_model.dart';
+import 'package:Ajr/Feature/NamesOfAllah/data/repo/names_of_allah_repo.dart';
+import 'package:Ajr/Feature/NamesOfAllah/presentation/manager/names_of_allah_cubit.dart';
+import 'package:Ajr/Feature/NamesOfAllah/presentation/manager/names_of_allah_state.dart';
 
 class NamesOfAllahDesktopPage extends StatefulWidget {
   const NamesOfAllahDesktopPage({super.key});

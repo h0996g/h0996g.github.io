@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Core/models/app_version_model.dart';
-import 'package:noor/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/models/app_version_model.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AppUpdateDialog extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
-import 'package:noor/Feature/Adkar/presentation/views/desktop/widgets/adkar_completion_desktop_widget.dart';
-import 'package:noor/Feature/Adkar/presentation/views/desktop/widgets/adkar_item_desktop_widget.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/desktop/widgets/adkar_completion_desktop_widget.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/desktop/widgets/adkar_item_desktop_widget.dart';
 import '../../manager/adkar_cubit.dart';
 import '../../manager/adkar_state.dart';
 

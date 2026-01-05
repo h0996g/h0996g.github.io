@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
-import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
-import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_state.dart';
-import 'package:noor/Feature/Quran/presentation/views/desktop/widget/surah_item_widget.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/quran_cubit/quran_state.dart';
+import 'package:Ajr/Feature/Quran/presentation/views/desktop/widget/surah_item_widget.dart';
 
 class SurahListPage extends StatelessWidget {
   const SurahListPage({super.key});

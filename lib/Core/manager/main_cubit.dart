@@ -1,10 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/helper/cache_helper.dart';
-import 'package:noor/Core/routing/app_router.dart';
-import 'package:noor/Core/widgets/notification_permission_dialog.dart';
-import 'package:noor/Core/widgets/app_update_dialog.dart';
-import 'package:noor/Core/services/version_check_service.dart';
+import 'package:Ajr/Core/helper/cache_helper.dart';
+import 'package:Ajr/Core/routing/app_router.dart';
+import 'package:Ajr/Core/widgets/notification_permission_dialog.dart';
+import 'package:Ajr/Core/widgets/app_update_dialog.dart';
+import 'package:Ajr/Core/services/version_check_service.dart';
 
 part 'main_state.dart';
 
@@ -52,6 +53,11 @@ class MainCubit extends Cubit<MainState> {
 
   /// Show notification permission dialog using global navigator
   void showNotificationDialogIfNeeded() {
+    // Don't show notification dialog in browser
+    if (kIsWeb) {
+      return;
+    }
+
     if (shouldShowNotificationDialog()) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Future.delayed(const Duration(milliseconds: 500), () {

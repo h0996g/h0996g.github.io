@@ -1,9 +1,22 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 
 class DioHelper {
   static late Dio dio;
+
+  static String get baseUrl {
+    // For web, we need to use a CORS proxy to bypass mixed content blocking
+    // since api.quran-tafseer.com only supports HTTP
+    if (kIsWeb) {
+      // Using AllOrigins as a CORS proxy
+      return 'https://api.allorigins.win/raw?url=http://api.quran-tafseer.com/tafseer/';
+    }
+    // For mobile platforms, use direct HTTP
+    return 'http://api.quran-tafseer.com/tafseer/';
+  }
+
   static init() {
-    dio = Dio(BaseOptions(baseUrl: 'http://api.quran-tafseer.com/tafseer/'));
+    dio = Dio(BaseOptions(baseUrl: baseUrl));
   }
 
   static Future<Response> getData({

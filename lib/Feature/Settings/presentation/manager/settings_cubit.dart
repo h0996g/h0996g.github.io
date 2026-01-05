@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/helper/cache_helper.dart';
-import 'package:noor/Core/services/notification_service.dart';
+import 'package:Ajr/Core/helper/cache_helper.dart';
+import 'package:Ajr/Core/services/notification_service.dart';
 
 part 'settings_state.dart';
 

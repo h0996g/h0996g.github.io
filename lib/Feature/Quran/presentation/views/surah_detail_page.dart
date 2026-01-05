@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Feature/Quran/data/models/surah_model.dart';
+import 'package:Ajr/Feature/Quran/data/models/surah_model.dart';
 import '../../../../Core/widgets/responsive_widget.dart';
 import 'mobile/surah_detail_page.dart' as mobile;
 import 'desktop/surah_detail_page.dart' as desktop;

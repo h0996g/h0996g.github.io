@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:noor/Feature/Quran/data/models/tafseer_model.dart';
+import 'package:Ajr/Feature/Quran/data/models/tafseer_model.dart';
 
 enum TafseerStatus { initial, loading, success, failure }
 

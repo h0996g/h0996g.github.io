@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Quran/data/models/surah_model.dart';
-import 'package:noor/Feature/Quran/data/models/ayah_model.dart';
-import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
-import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_state.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Quran/data/models/surah_model.dart';
+import 'package:Ajr/Feature/Quran/data/models/ayah_model.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/audio_cubit/audio_state.dart';
 import '../tafseer_dialog.dart';
 
 class AyahItemWidget extends StatelessWidget {

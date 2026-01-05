@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
-import 'package:noor/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_cubit.dart';
-import 'package:noor/Feature/Quran/presentation/views/desktop/widget/tafseer_content_widget.dart';
+import 'package:Ajr/Feature/Quran/data/repo/quran_repo.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_cubit.dart';
+import 'package:Ajr/Feature/Quran/presentation/views/desktop/widget/tafseer_content_widget.dart';
 
 class TafseerDialog {
   static void show(BuildContext context, int surahNumber, int ayahNumber) {

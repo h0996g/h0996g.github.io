@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
-import 'package:noor/Feature/Quran/data/models/ayah_model.dart';
-import 'package:noor/Feature/Quran/data/models/surah_model.dart';
-import 'package:noor/Feature/Quran/presentation/views/desktop/widget/ayah_item_widget.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/widgets/appbar/desktop/custom_app_bar_desktop.dart';
+import 'package:Ajr/Feature/Quran/data/models/ayah_model.dart';
+import 'package:Ajr/Feature/Quran/data/models/surah_model.dart';
+import 'package:Ajr/Feature/Quran/presentation/views/desktop/widget/ayah_item_widget.dart';
 
 class SurahDetailPage extends StatelessWidget {
   final SurahModel surah;

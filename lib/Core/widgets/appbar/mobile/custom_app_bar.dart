@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/utils/device_type_query.dart';
-import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/utils/device_type_query.dart';
+import 'package:Ajr/Feature/Settings/presentation/manager/settings_cubit.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;

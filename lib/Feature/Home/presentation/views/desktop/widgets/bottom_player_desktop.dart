@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Home/presentation/manager/bottom_player_cubit.dart';
-import 'package:noor/Feature/Home/presentation/manager/bottom_player_state.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Home/presentation/manager/bottom_player_cubit.dart';
+import 'package:Ajr/Feature/Home/presentation/manager/bottom_player_state.dart';
 
 class BottomPlayerDesktop extends StatelessWidget {
   const BottomPlayerDesktop({super.key});

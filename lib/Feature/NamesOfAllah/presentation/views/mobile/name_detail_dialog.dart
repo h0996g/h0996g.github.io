@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
 import '../../../data/models/name_of_allah_model.dart';
 
 class NameDetailDialog extends StatelessWidget {

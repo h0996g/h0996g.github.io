@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../Core/routing/app_router.dart';
-import 'package:noor/Core/const/app_images.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Adkar/data/models/adkar_section_model.dart';
+import 'package:Ajr/Core/const/app_images.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Adkar/data/models/adkar_section_model.dart';
 
 class AdkarSectionItemWidget extends StatefulWidget {
   final AdkarSectionModel section;

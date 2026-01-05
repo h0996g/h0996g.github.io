@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Adkar/presentation/views/mobile/widgets/adkar_completion_widget.dart';
-import 'package:noor/Feature/Adkar/presentation/views/mobile/widgets/adkar_item_widget.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/mobile/widgets/adkar_completion_widget.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/mobile/widgets/adkar_item_widget.dart';
 import '../../manager/adkar_cubit.dart';
 import '../../manager/adkar_state.dart';
-import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
+import 'package:Ajr/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class AdkarDetailsPage extends StatefulWidget {
   final int sectionId;

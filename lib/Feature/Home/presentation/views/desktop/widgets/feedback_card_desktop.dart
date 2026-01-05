@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:noor/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
 
 class FeedbackCardDesktop extends StatefulWidget {
   final VoidCallback onTap;

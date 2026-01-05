@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Home/presentation/views/desktop/widgets/bottom_player_desktop.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Home/presentation/views/desktop/widgets/bottom_player_desktop.dart';
 
 class AdkarCompletionDesktopWidget extends StatelessWidget {
   const AdkarCompletionDesktopWidget({super.key});

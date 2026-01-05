@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../../Core/routing/app_router.dart';
-import 'package:noor/Core/const/app_images.dart';
-import 'package:noor/Feature/Adkar/data/models/adkar_section_model.dart';
+import 'package:Ajr/Core/const/app_images.dart';
+import 'package:Ajr/Feature/Adkar/data/models/adkar_section_model.dart';
 
 class AdkarSectionItemWidget extends StatelessWidget {
   final AdkarSectionModel section;

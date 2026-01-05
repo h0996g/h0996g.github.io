@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:noor/Core/api/dio.dart';
-import 'package:noor/Core/helper/cache_helper.dart';
-import 'package:noor/Core/helper/environment.dart';
-import 'package:noor/Core/helper/observer.dart';
+import 'package:Ajr/Core/api/dio.dart';
+import 'package:Ajr/Core/helper/cache_helper.dart';
+import 'package:Ajr/Core/helper/environment.dart';
+import 'package:Ajr/Core/helper/observer.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 

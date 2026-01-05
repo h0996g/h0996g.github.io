@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:noor/Feature/Home/presentation/views/start_page.dart';
-import 'package:noor/Feature/Adkar/presentation/views/adkar_sections_page.dart';
-import 'package:noor/Feature/Adkar/presentation/views/adkar_details_page.dart';
-import 'package:noor/Feature/Quran/presentation/views/surah_list_page.dart';
-import 'package:noor/Feature/Quran/presentation/views/surah_detail_page.dart';
-import 'package:noor/Feature/NamesOfAllah/presentation/views/names_of_allah_page.dart';
-import 'package:noor/Feature/tasbih/presentation/views/tasbih_page.dart';
-import 'package:noor/Feature/Settings/presentation/views/settings_page.dart';
-import 'package:noor/Feature/Quran/data/models/surah_model.dart';
-import 'package:noor/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
-import 'package:noor/Feature/Quran/data/repo/quran_repo.dart';
-import 'package:noor/Feature/Adkar/presentation/manager/adkar_cubit.dart';
-import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
-import 'package:noor/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
+import 'package:Ajr/Feature/Home/presentation/views/start_page.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/adkar_sections_page.dart';
+import 'package:Ajr/Feature/Adkar/presentation/views/adkar_details_page.dart';
+import 'package:Ajr/Feature/Quran/presentation/views/surah_list_page.dart';
+import 'package:Ajr/Feature/Quran/presentation/views/surah_detail_page.dart';
+import 'package:Ajr/Feature/NamesOfAllah/presentation/views/names_of_allah_page.dart';
+import 'package:Ajr/Feature/tasbih/presentation/views/tasbih_page.dart';
+import 'package:Ajr/Feature/Settings/presentation/views/settings_page.dart';
+import 'package:Ajr/Feature/Quran/data/models/surah_model.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/quran_cubit/quran_cubit.dart';
+import 'package:Ajr/Feature/Quran/data/repo/quran_repo.dart';
+import 'package:Ajr/Feature/Adkar/presentation/manager/adkar_cubit.dart';
+import 'package:Ajr/Feature/Adkar/data/repo/adkar_repo.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/audio_cubit/audio_cubit.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

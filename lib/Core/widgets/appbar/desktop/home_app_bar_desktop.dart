@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../Core/routing/app_router.dart';
-import 'package:noor/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
 
 class HomeAppBarDesktop extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBarDesktop({super.key});

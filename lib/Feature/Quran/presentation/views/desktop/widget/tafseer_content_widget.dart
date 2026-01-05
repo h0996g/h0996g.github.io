@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_cubit.dart';
-import 'package:noor/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_state.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_cubit.dart';
+import 'package:Ajr/Feature/Quran/presentation/manager/tafseer_cubit/tafseer_state.dart';
 
 class TafseerContentWidget extends StatelessWidget {
   const TafseerContentWidget({super.key});

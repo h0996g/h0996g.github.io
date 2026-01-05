@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Settings/presentation/manager/settings_cubit.dart';
 
 class CustomAppBarDesktop extends StatelessWidget
     implements PreferredSizeWidget {

@@ -1,11 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
-import 'package:noor/Feature/Adkar/data/models/adkar_detail_model.dart';
-import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
+import 'package:Ajr/Feature/Adkar/data/repo/adkar_repo.dart';
+import 'package:Ajr/Feature/Adkar/data/models/adkar_detail_model.dart';
+import 'package:Ajr/Feature/Settings/presentation/manager/settings_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:noor/Core/helper/overlay_notification_helper.dart';
+import 'package:Ajr/Core/helper/overlay_notification_helper.dart';
 
 class NotificationService {
   static final NotificationService _instance = NotificationService._internal();

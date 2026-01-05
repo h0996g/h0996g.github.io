@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:noor/Core/manager/main_cubit.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/routing/app_router.dart';
-import 'package:noor/Core/helper/overlay_notification_helper.dart';
-import 'package:noor/Core/services/notification_service.dart';
-import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
+import 'package:Ajr/Core/manager/main_cubit.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/routing/app_router.dart';
+import 'package:Ajr/Core/helper/overlay_notification_helper.dart';
+import 'package:Ajr/Core/services/notification_service.dart';
+import 'package:Ajr/Feature/Settings/presentation/manager/settings_cubit.dart';
 
 class NotificationPermissionDialog extends StatefulWidget {
   const NotificationPermissionDialog({super.key});

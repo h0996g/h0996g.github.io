@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Feedback/presentation/manager/feedback_cubit.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Feedback/presentation/manager/feedback_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class FeedbackDialogDesktop extends StatefulWidget {

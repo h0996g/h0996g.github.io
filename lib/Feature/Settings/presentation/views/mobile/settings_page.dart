@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/widgets/appbar/mobile/custom_app_bar.dart';
 import 'widgets/text_size_control_widget.dart';
 import 'widgets/notification_control_widget.dart';
 import 'widgets/overlay_customization_widget.dart';

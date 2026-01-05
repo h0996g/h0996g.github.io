@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Feature/Quran/presentation/views/mobile/widget/surah_item_widget.dart';
+import 'package:Ajr/Feature/Quran/presentation/views/mobile/widget/surah_item_widget.dart';
 import '../../../../../Core/theme/app_colors.dart';
 import '../../manager/quran_cubit/quran_cubit.dart';
 import '../../manager/quran_cubit/quran_state.dart';
-import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
+import 'package:Ajr/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class SurahListPage extends StatelessWidget {
   const SurahListPage({super.key});

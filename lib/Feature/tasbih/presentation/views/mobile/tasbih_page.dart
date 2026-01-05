@@ -10,7 +10,7 @@ import 'widgets/tasbih_dhikr_selector_widget.dart';
 import 'widgets/tasbih_dhikr_display_widget.dart';
 import 'widgets/tasbih_counter_widget.dart';
 
-import 'package:noor/Core/widgets/appbar/mobile/custom_app_bar.dart';
+import 'package:Ajr/Core/widgets/appbar/mobile/custom_app_bar.dart';
 
 class TasbihPage extends StatelessWidget {
   const TasbihPage({super.key});

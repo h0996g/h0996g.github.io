@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:noor/Feature/Adkar/data/repo/adkar_repo.dart';
+import 'package:Ajr/Feature/Adkar/data/repo/adkar_repo.dart';
 import 'adkar_state.dart';
 
 class AdkarCubit extends Cubit<AdkarState> {

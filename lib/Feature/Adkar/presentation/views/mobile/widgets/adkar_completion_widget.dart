@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Home/presentation/views/mobile/widgets/bottom_player_widget.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Home/presentation/views/mobile/widgets/bottom_player_widget.dart';
 
 class AdkarCompletionWidget extends StatelessWidget {
   const AdkarCompletionWidget({super.key});

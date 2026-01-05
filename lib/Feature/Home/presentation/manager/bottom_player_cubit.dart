@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:noor/Feature/Home/data/repo/home_repo.dart';
-import 'package:noor/Feature/Home/presentation/manager/bottom_player_state.dart';
+import 'package:Ajr/Feature/Home/data/repo/home_repo.dart';
+import 'package:Ajr/Feature/Home/presentation/manager/bottom_player_state.dart';
 import 'dart:math';
 
 class BottomPlayerCubit extends Cubit<BottomPlayerState> {

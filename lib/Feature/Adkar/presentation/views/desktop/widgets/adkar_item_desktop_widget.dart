@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Feature/Adkar/data/models/adkar_detail_model.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Feature/Adkar/data/models/adkar_detail_model.dart';
 
 class AdkarItemDesktopWidget extends StatefulWidget {
   final AdkarDetailModel detail;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:noor/Feature/Adkar/presentation/views/mobile/adkar_sections_page.dart'
+import 'package:Ajr/Feature/Adkar/presentation/views/mobile/adkar_sections_page.dart'
     as mobile;
-import 'package:noor/Feature/Adkar/presentation/views/desktop/adkar_sections_page.dart'
+import 'package:Ajr/Feature/Adkar/presentation/views/desktop/adkar_sections_page.dart'
     as desktop;
 
 class AdkarSectionsPage extends StatelessWidget {

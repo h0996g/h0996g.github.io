@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:noor/Core/routing/app_router.dart';
-import 'package:noor/Core/theme/app_colors.dart';
-import 'package:noor/Core/utils/app_utils.dart';
-import 'package:noor/Core/manager/main_cubit.dart';
-import 'package:noor/Feature/Home/data/repo/home_repo.dart';
-import 'package:noor/Feature/Home/presentation/manager/bottom_player_cubit.dart';
+import 'package:Ajr/Core/routing/app_router.dart';
+import 'package:Ajr/Core/theme/app_colors.dart';
+import 'package:Ajr/Core/utils/app_utils.dart';
+import 'package:Ajr/Core/manager/main_cubit.dart';
+import 'package:Ajr/Feature/Home/data/repo/home_repo.dart';
+import 'package:Ajr/Feature/Home/presentation/manager/bottom_player_cubit.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:noor/Feature/Settings/presentation/manager/settings_cubit.dart';
+import 'package:Ajr/Feature/Settings/presentation/manager/settings_cubit.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
               return BlocBuilder<SettingsCubit, SettingsState>(
                 builder: (context, state) {
                   return MaterialApp.router(
-                    title: 'Noor',
+                    title: 'Ajr',
 
                     debugShowCheckedModeBanner: false,
                     routerConfig: AppRouter.router,
