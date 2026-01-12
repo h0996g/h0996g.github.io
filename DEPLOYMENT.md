@@ -28,7 +28,7 @@ Your Flutter web app is now configured to automatically deploy to GitHub Pages w
 ### Your Web App URL
 
 After deployment, your app will be available at:
-**https://h0996g.github.io/noor/**
+**https://h0996g.github.io/**
 
 ### Future Updates
 
@@ -49,7 +49,7 @@ If you prefer to deploy manually without GitHub Actions:
 1. Build the web app:
 
    ```bash
-   flutter build web --release --base-href /noor/
+   flutter build web --release --base-href /
    ```
 
 2. Install gh-pages tool:
