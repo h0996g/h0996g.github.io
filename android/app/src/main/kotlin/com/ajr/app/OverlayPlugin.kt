@@ -46,6 +46,10 @@ class OverlayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                 stopScheduler()
                 result.success(true)
             }
+            "updateSettings" -> {
+                updateSettings()
+                result.success(true)
+            }
             "checkPermission" -> {
                 val hasPermission = checkOverlayPermission()
                 result.success(hasPermission)
@@ -91,6 +95,15 @@ class OverlayPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
         context?.let { ctx ->
             val intent = Intent(ctx, OverlayNotificationService::class.java)
             ctx.stopService(intent)
+        }
+    }
+
+    private fun updateSettings() {
+        context?.let { ctx ->
+            val intent = Intent(ctx, OverlayNotificationService::class.java).apply {
+                action = OverlayNotificationService.ACTION_UPDATE_SETTINGS
+            }
+            ctx.startService(intent)
         }
     }
 

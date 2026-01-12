@@ -90,10 +90,11 @@ class OverlayNotificationService : Service() {
                 // Settings updated, maybe refresh view if visible
                 if (overlayView != null) {
                     val sharedPreferences = getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE)
-                    val textSize = sharedPreferences.getFloat("flutter.overlay_text_size", 18f)
-                    val textColor = sharedPreferences.getInt("flutter.overlay_text_color", Color.BLACK)
-                    val backgroundColor = sharedPreferences.getInt("flutter.overlay_background_color", Color.WHITE)
-                    val opacity = sharedPreferences.getFloat("flutter.overlay_background_opacity", 1.0f)
+                    // Flutter stores floats as String, so we need to use getString() and convert
+                    val textSize = sharedPreferences.getString("flutter.overlay_text_size", "18.0")?.toFloatOrNull() ?: 18f
+                    val textColor = sharedPreferences.getLong("flutter.overlay_text_color", Color.BLACK.toLong()).toInt()
+                    val backgroundColor = sharedPreferences.getLong("flutter.overlay_background_color", Color.WHITE.toLong()).toInt()
+                    val opacity = sharedPreferences.getString("flutter.overlay_background_opacity", "1.0")?.toFloatOrNull() ?: 1.0f
                     
                     val alpha = (opacity * 255).toInt()
                     val finalBgColor = (alpha shl 24) or (backgroundColor and 0x00FFFFFF)
@@ -130,10 +131,20 @@ class OverlayNotificationService : Service() {
 
     private fun showRandomAdkar() {
         val prefs = getSharedPreferences("FlutterSharedPreferences", Context.MODE_PRIVATE)
-        val textSize = prefs.getFloat("flutter.overlay_text_size", 18f)
-        val textColor = prefs.getInt("flutter.overlay_text_color", Color.BLACK)
-        val backgroundColor = prefs.getInt("flutter.overlay_background_color", Color.WHITE)
-        val opacity = prefs.getFloat("flutter.overlay_background_opacity", 1.0f)
+        
+        // Check notification type - only show overlay for headsUp (index 1)
+        // Flutter stores integers as Long, so we need to use getLong()
+        val notificationType = prefs.getLong("flutter.notification_type", 0L).toInt()
+        if (notificationType != 1) {
+            // Not headsUp type, don't show overlay
+            return
+        }
+        
+        // Flutter stores floats as String, so we need to use getString() and convert
+        val textSize = prefs.getString("flutter.overlay_text_size", "18.0")?.toFloatOrNull() ?: 18f
+        val textColor = prefs.getLong("flutter.overlay_text_color", Color.BLACK.toLong()).toInt()
+        val backgroundColor = prefs.getLong("flutter.overlay_background_color", Color.WHITE.toLong()).toInt()
+        val opacity = prefs.getString("flutter.overlay_background_opacity", "1.0")?.toFloatOrNull() ?: 1.0f
         
         val alpha = (opacity * 255).toInt()
         val finalBgColor = (alpha shl 24) or (backgroundColor and 0x00FFFFFF)
@@ -166,7 +177,7 @@ class OverlayNotificationService : Service() {
 
         return NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("تطبيق الأذكار")
-            .setContentText("يعمل في الخلفية")
+            .setContentText("يعمل في الخلفية من اجل الاشعارات المنبثقة (يمكن تعطيله من الإعدادات)")
             .setSmallIcon(R.mipmap.ic_launcher)
             .setContentIntent(pendingIntent)
             .setOngoing(true)

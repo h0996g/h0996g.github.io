@@ -61,4 +61,13 @@ class OverlayNotificationHelper {
       print('Error stopping scheduler: $e');
     }
   }
+
+  /// Update overlay settings in real-time
+  static Future<void> updateSettings() async {
+    try {
+      await _channel.invokeMethod('updateSettings');
+    } catch (e) {
+      print('Error updating settings: $e');
+    }
+  }
 }

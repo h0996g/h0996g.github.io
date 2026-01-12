@@ -84,20 +84,6 @@ class NotificationControlWidget extends StatelessWidget {
                       Expanded(
                         child: _buildTypeCard(
                           context,
-                          icon: Icons.unfold_more,
-                          label: 'موسع',
-                          isSelected:
-                              state.notificationType ==
-                              NotificationType.bigText,
-                          onTap: () => context
-                              .read<SettingsCubit>()
-                              .updateNotificationType(NotificationType.bigText),
-                        ),
-                      ),
-                      SizedBox(width: 12.w),
-                      Expanded(
-                        child: _buildTypeCard(
-                          context,
                           icon: Icons.notification_important,
                           label: 'منبثق',
                           isSelected:
@@ -137,8 +123,6 @@ class NotificationControlWidget extends StatelessWidget {
                   Text(
                     state.notificationType == NotificationType.normal
                         ? 'إشعار عادي في شريط الحالة'
-                        : state.notificationType == NotificationType.bigText
-                        ? 'إشعار قابل للتوسيع مع نص كامل'
                         : 'إشعار منبثق على الشاشة (مثل العائم)',
                     textAlign: TextAlign.center,
                     style: TextStyle(

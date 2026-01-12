@@ -12,8 +12,8 @@ class OverlayCustomizationWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
-        // Only show if bigText or headsUp type is selected
-        if (state.notificationType == NotificationType.normal) {
+        // Only show if headsUp type is selected (custom overlay notifications)
+        if (state.notificationType != NotificationType.headsUp) {
           return const SizedBox.shrink();
         }
 

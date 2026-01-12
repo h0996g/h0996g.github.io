@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:Ajr/Core/helper/cache_helper.dart';
 import 'package:Ajr/Core/services/notification_service.dart';
+import 'package:Ajr/Core/helper/overlay_notification_helper.dart';
 
 part 'settings_state.dart';
 
@@ -72,6 +73,12 @@ class SettingsCubit extends Cubit<SettingsState> {
       value: intervalMinutes,
     );
 
+    // If enabling notifications (interval > 0), ensure we have permission
+    if (intervalMinutes > 0) {
+      // Initialize notification service (this will request permission if needed)
+      await _notificationService.initialize();
+    }
+
     await _notificationService.scheduleAdkarNotifications(
       intervalMinutes,
       state.notificationType,
@@ -84,6 +91,9 @@ class SettingsCubit extends Cubit<SettingsState> {
 
     // Reschedule notifications with new type if interval is active
     if (state.notificationIntervalMinutes > 0) {
+      // Ensure we have notification permission
+      await _notificationService.initialize();
+
       await _notificationService.scheduleAdkarNotifications(
         state.notificationIntervalMinutes,
         type,
@@ -94,16 +104,28 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> updateOverlayTextSize(double size) async {
     emit(state.copyWith(overlayTextSize: size));
     await CacheHelper.putCache(key: _overlayTextSizeKey, value: size);
+    // Update overlay in real-time if headsUp type is active
+    if (state.notificationType == NotificationType.headsUp) {
+      await OverlayNotificationHelper.updateSettings();
+    }
   }
 
   Future<void> updateOverlayTextColor(int color) async {
     emit(state.copyWith(overlayTextColor: color));
     await CacheHelper.putCache(key: _overlayTextColorKey, value: color);
+    // Update overlay in real-time if headsUp type is active
+    if (state.notificationType == NotificationType.headsUp) {
+      await OverlayNotificationHelper.updateSettings();
+    }
   }
 
   Future<void> updateOverlayBackgroundColor(int color) async {
     emit(state.copyWith(overlayBackgroundColor: color));
     await CacheHelper.putCache(key: _overlayBackgroundColorKey, value: color);
+    // Update overlay in real-time if headsUp type is active
+    if (state.notificationType == NotificationType.headsUp) {
+      await OverlayNotificationHelper.updateSettings();
+    }
   }
 
   Future<void> updateOverlayBackgroundOpacity(double opacity) async {
@@ -112,5 +134,9 @@ class SettingsCubit extends Cubit<SettingsState> {
       key: _overlayBackgroundOpacityKey,
       value: opacity,
     );
+    // Update overlay in real-time if headsUp type is active
+    if (state.notificationType == NotificationType.headsUp) {
+      await OverlayNotificationHelper.updateSettings();
+    }
   }
 }

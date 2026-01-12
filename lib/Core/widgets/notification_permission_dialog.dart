@@ -134,13 +134,6 @@ class _NotificationPermissionDialogState
         ),
         const SizedBox(height: 10),
         _buildNotificationTypeOption(
-          type: NotificationType.bigText,
-          title: 'إشعار موسع',
-          description: 'عرض النص كاملاً',
-          emoji: '📱',
-        ),
-        const SizedBox(height: 10),
-        _buildNotificationTypeOption(
           type: NotificationType.headsUp,
           title: 'إشعار منبثق',
           description: 'ظهور فوري على الشاشة',

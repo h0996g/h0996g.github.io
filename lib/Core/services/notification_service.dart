@@ -16,9 +16,8 @@ class NotificationService {
       FlutterLocalNotificationsPlugin();
   final AdkarRepository _adkarRepository = AdkarRepository();
 
-  // Notification channel IDs
+  // Notification channel ID
   static const String _normalChannelId = 'adkar_normal';
-  static const String _bigTextChannelId = 'adkar_bigtext';
 
   Future<void> initialize() async {
     // Android notification channels
@@ -31,28 +30,12 @@ class NotificationService {
       playSound: true,
     );
 
-    const AndroidNotificationChannel bigTextChannel =
-        AndroidNotificationChannel(
-          _bigTextChannelId,
-          'أذكار موسعة',
-          description: 'إشعارات الأذكار مع نص كامل قابل للتوسيع',
-          importance: Importance.high,
-          enableVibration: true,
-          playSound: true,
-        );
-
-    // Create channels
+    // Create channel
     await _notifications
         .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin
         >()
         ?.createNotificationChannel(normalChannel);
-
-    await _notifications
-        .resolvePlatformSpecificImplementation<
-          AndroidFlutterLocalNotificationsPlugin
-        >()
-        ?.createNotificationChannel(bigTextChannel);
 
     // Initialize notifications
     const AndroidInitializationSettings androidSettings =
@@ -109,8 +92,13 @@ class NotificationService {
     await prefs.setInt('notification_interval', intervalMinutes);
     await prefs.setInt('notification_type', type.index);
 
-    // Start native Kotlin scheduler (foreground service)
-    await OverlayNotificationHelper.startScheduler(intervalMinutes);
+    // Only start foreground service for headsUp type (overlay notifications)
+    // For normal and bigText, stop the foreground service
+    if (type == NotificationType.headsUp) {
+      await OverlayNotificationHelper.startScheduler(intervalMinutes);
+    } else {
+      await OverlayNotificationHelper.stopScheduler();
+    }
 
     // Show immediate notification
     await showRandomAdkarNotification();
@@ -126,26 +114,32 @@ class NotificationService {
       final typeIndex = prefs.getInt('notification_type') ?? 0;
       final type = NotificationType.values[typeIndex];
 
-      // Get overlay customization settings
-      final overlayTextSize = prefs.getDouble('overlay_text_size') ?? 18.0;
-      final overlayTextColor = prefs.getInt('overlay_text_color') ?? 0xFF000000;
-      final overlayBgColor =
-          prefs.getInt('overlay_background_color') ?? 0xFFFFFFFF;
-      final overlayBgOpacity =
-          prefs.getDouble('overlay_background_opacity') ?? 1.0;
+      // Only load overlay customization settings for headsUp type
+      if (type == NotificationType.headsUp) {
+        final overlayTextSize = prefs.getDouble('overlay_text_size') ?? 18.0;
+        final overlayTextColor =
+            prefs.getInt('overlay_text_color') ?? 0xFF000000;
+        final overlayBgColor =
+            prefs.getInt('overlay_background_color') ?? 0xFFFFFFFF;
+        final overlayBgOpacity =
+            prefs.getDouble('overlay_background_opacity') ?? 1.0;
 
-      // Apply opacity to background color
-      final bgColorWithOpacity = Color(
-        overlayBgColor,
-      ).withOpacity(overlayBgOpacity).value;
+        // Apply opacity to background color
+        final bgColorWithOpacity = Color(
+          overlayBgColor,
+        ).withOpacity(overlayBgOpacity).value;
 
-      await _showNotification(
-        adkar.content,
-        type,
-        textSize: overlayTextSize,
-        textColor: overlayTextColor,
-        backgroundColor: bgColorWithOpacity,
-      );
+        await _showNotification(
+          adkar.content,
+          type,
+          textSize: overlayTextSize,
+          textColor: overlayTextColor,
+          backgroundColor: bgColorWithOpacity,
+        );
+      } else {
+        // For normal and bigText types, use default values
+        await _showNotification(adkar.content, type);
+      }
     } catch (e) {
       print('Error showing notification: $e');
     }
@@ -165,10 +159,6 @@ class NotificationService {
           _normalChannelId,
           Importance.defaultImportance,
         );
-        break;
-
-      case NotificationType.bigText:
-        await _showBigTextNotification(adkarText, backgroundColor);
         break;
 
       case NotificationType.headsUp:
@@ -198,50 +188,6 @@ class NotificationService {
           priority: Priority.defaultPriority,
           showWhen: true,
           icon: '@mipmap/ic_launcher',
-        );
-
-    const DarwinNotificationDetails iosDetails = DarwinNotificationDetails(
-      presentAlert: true,
-      presentBadge: true,
-      presentSound: true,
-    );
-
-    final NotificationDetails notificationDetails = NotificationDetails(
-      android: androidDetails,
-      iOS: iosDetails,
-    );
-
-    await _notifications.show(
-      notificationId,
-      '🌙 ذكر',
-      adkarText,
-      notificationDetails,
-    );
-  }
-
-  Future<void> _showBigTextNotification(
-    String adkarText,
-    int backgroundColor,
-  ) async {
-    final int notificationId = Random().nextInt(100000);
-
-    final AndroidNotificationDetails androidDetails =
-        AndroidNotificationDetails(
-          _bigTextChannelId,
-          'أذكار موسعة',
-          importance: Importance.high,
-          priority: Priority.high,
-          showWhen: true,
-          icon: '@mipmap/ic_launcher',
-          styleInformation: BigTextStyleInformation(
-            adkarText,
-            htmlFormatBigText: true,
-            contentTitle: '🌙 ذكر',
-            htmlFormatContentTitle: true,
-            summaryText: 'اضغط للتوسيع',
-            htmlFormatSummaryText: true,
-          ),
-          color: Color(backgroundColor),
         );
 
     const DarwinNotificationDetails iosDetails = DarwinNotificationDetails(

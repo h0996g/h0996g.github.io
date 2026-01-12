@@ -2,7 +2,6 @@ part of 'settings_cubit.dart';
 
 enum NotificationType {
   normal, // Normal status bar notification
-  bigText, // Expandable notification with full text
   headsUp, // High priority popup notification (like overlay)
 }
 
