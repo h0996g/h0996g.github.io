@@ -11,10 +11,22 @@ class Environment {
   }
 
   static String get supabaseUrl {
+    // For web builds, prioritize --dart-define values
+    const defineUrl = String.fromEnvironment('SUPABASE_URL');
+    if (defineUrl.isNotEmpty) {
+      return defineUrl;
+    }
+    // Fallback to .env file for development
     return dotenv.env['SUPABASE_URL'] ?? 'URL_NOT_FOUND';
   }
 
   static String get supabaseAnonKey {
+    // For web builds, prioritize --dart-define values
+    const defineKey = String.fromEnvironment('SUPABASE_ANON_KEY');
+    if (defineKey.isNotEmpty) {
+      return defineKey;
+    }
+    // Fallback to .env file for development
     return dotenv.env['SUPABASE_ANON_KEY'] ?? 'URL_NOT_FOUND';
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,7 +24,17 @@ class AppUtils {
 
     DioHelper.init();
     Bloc.observer = MyBlocObserver();
-    await dotenv.load(fileName: Environment.fileName);
+
+    // Try to load .env file (for development)
+    // In production web builds, we use --dart-define instead
+    // Skip dotenv loading for web in release mode to avoid 404 errors
+    if (!kIsWeb || !kReleaseMode) {
+      try {
+        await dotenv.load(fileName: Environment.fileName);
+      } catch (e) {
+        debugPrint('dotenv file not found, using --dart-define values: $e');
+      }
+    }
 
     await Supabase.initialize(
       url: Environment.supabaseUrl,
