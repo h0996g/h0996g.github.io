@@ -1,0 +1,4 @@
+cd /Users/mac/Development/Projects/ajr/web
+git add .
+git commit -m "Update web app"
+git push origin main
